@@ -26,6 +26,20 @@ namespace EndlessQuest
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //Menu components
+        enum GameState
+        {
+            MainMenu,
+            Options,
+            Playing,
+        }
+        GameState CurrentGameState = GameState.MainMenu;
+
+        // Screen adjustments
+        int screenWidth = 800, screenHeight = 600;
+
+        Button btnPlay;
+
         SpriteManager spriteManager;
 
         //Audio components
@@ -57,8 +71,8 @@ namespace EndlessQuest
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            spriteManager = new SpriteManager(this);
-            Components.Add(spriteManager);
+            //spriteManager = new SpriteManager(this);
+            //Components.Add(spriteManager);
 
             base.Initialize();
         }
@@ -81,10 +95,17 @@ namespace EndlessQuest
             //soundBank.PlayCue("overworld_theme");
 
             // Plays background music
-            Song song = Content.Load<Song>(@"Audio\overworld_theme");
-            MediaPlayer.Play(song);
+            //Song song = Content.Load<Song>(@"Audio\overworld_theme");
+            //MediaPlayer.Play(song);
 
-            // TODO: use this.Content to load your game content here
+            // Screen stuff
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+            graphics.ApplyChanges();
+            IsMouseVisible = true;
+
+            btnPlay = new Button(Content.Load<Texture2D>(@"Images\menu"), graphics.GraphicsDevice);
+            btnPlay.setPosition(new Vector2(350, 300));
         }
 
         /// <summary>
@@ -111,6 +132,21 @@ namespace EndlessQuest
             if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            MouseState mouse = Mouse.GetState();
+
+            switch(CurrentGameState)
+            {
+                case GameState.MainMenu:
+                    {
+                        if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
+                        btnPlay.Update(mouse);
+                        break;
+
+                    }
+                case GameState.Playing: break;
+
+            }
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -124,7 +160,21 @@ namespace EndlessQuest
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            switch (CurrentGameState)
+            {
+                case GameState.MainMenu:
+                {
+                    spriteBatch.Draw(Content.Load<Texture2D>(@"Images\menu"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    btnPlay.Draw(spriteBatch);
+                    break;
+                }
+                case GameState.Playing: break;
+
+            }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

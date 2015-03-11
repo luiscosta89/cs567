@@ -17,6 +17,11 @@ namespace EndlessQuest
         private string weaponName;
         private int damage;
 
+        public override Vector2 Direction
+        {
+            get { return speed; }
+        }
+
          public Weapon(Texture2D textureImage, Vector2 position, Point frameSize,
                                int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed, string collisionCueName)
                                : base(textureImage, position, frameSize, collisionOffset, currentFrame, sheetSize, speed, collisionCueName)

@@ -14,6 +14,22 @@ namespace EndlessQuest
 {
     class Item : Sprite
     {
+        public override Vector2 Direction
+        {
+            get { return speed; }
+        }
+        
+        public Item(Texture2D textureImage, Vector2 position, Point frameSize,
+                               int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed, string collisionCueName)
+                               : base(textureImage, position, frameSize, collisionOffset, currentFrame, sheetSize, speed, collisionCueName)
+        {
+        }
+
+        public Item(Texture2D textureImage, Vector2 position, Point frameSize,
+                                    int collisionOffset, Point currentFrame, Point sheetSize, Vector2 speed, int millisecondsPerFrame, string collisionCueName)
+                                    : base(textureImage, position, frameSize, collisionOffset, currentFrame, sheetSize, speed, millisecondsPerFrame, collisionCueName)
+        {
+        }
 
     }
 }

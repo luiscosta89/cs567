@@ -1,0 +1,9 @@
+Content\Images\button.xnb
+Content\Images\menu.xnb
+Content\Images\goomba_sheet.xnb
+Content\Images\luigi_sheet.xnb
+Content\Audio\overworld_theme.xnb
+Content\Audio\overworld_theme.wma
+Content\Audio\GameAudio.xgs
+Content\Audio\Wave Bank.xwb
+Content\Audio\Sound Bank.xsb
