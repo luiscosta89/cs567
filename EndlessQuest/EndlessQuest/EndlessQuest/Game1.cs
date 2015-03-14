@@ -42,6 +42,12 @@ namespace EndlessQuest
 
         SpriteManager spriteManager;
 
+        private Texture2D clouds;                           // clouds texture
+        private Texture2D background;                            // background texture
+        private Texture2D mountains;                            // mountains texture
+        private Texture2D pipes;                                // pipes texture
+        private Texture2D fuck;
+
         //Audio components
         AudioEngine audioEngine;
         WaveBank waveBank;
@@ -71,8 +77,8 @@ namespace EndlessQuest
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            //spriteManager = new SpriteManager(this);
-            //Components.Add(spriteManager);
+            // spriteManager = new SpriteManager(this);
+            // Components.Add(spriteManager);
 
             base.Initialize();
         }
@@ -85,20 +91,44 @@ namespace EndlessQuest
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteManager = new SpriteManager(this);
 
+            /**************************************************************************************/
+            
             // Load audio content
             audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
             waveBank = new WaveBank(audioEngine, @"Content\Audio\Wave Bank.xwb");
             soundBank = new SoundBank(audioEngine, @"Content\Audio\Sound Bank.xsb");
 
-            // Starts playing background music
-            //soundBank.PlayCue("overworld_theme");
-
             // Plays background music
-            //Song song = Content.Load<Song>(@"Audio\overworld_theme");
-            //MediaPlayer.Play(song);
+            Song song = Content.Load<Song>(@"Audio\overworld_theme");
+            MediaPlayer.Play(song);
 
-            // Screen stuff
+            /**************************************************************************************/
+            
+            // Load the Parallax Layers
+            
+            mountains = this.Content.Load<Texture2D>("Images/l3");
+            clouds = this.Content.Load<Texture2D>("Images/l2");
+            background = this.Content.Load<Texture2D>("Images/l1");
+            fuck = this.Content.Load<Texture2D>("Images/l4");
+            pipes = this.Content.Load<Texture2D>("Images/l5");
+
+            // First the closest
+            listParallaxLayer = new List<ParallaxLayer>();
+            listParallaxLayer.Add(new ParallaxLayer(graphics, background, 30.0f));
+            listParallaxLayer.Add(new ParallaxLayer(graphics, clouds, 30.0f));
+            listParallaxLayer.Add(new ParallaxLayer(graphics, mountains, 30.0f));
+            listParallaxLayer.Add(new ParallaxLayer(graphics, fuck, 30.0f));
+            listParallaxLayer.Add(new ParallaxLayer(graphics, pipes, 30.0f));
+
+            /**************************************************************************************/
+
+            // Starts playing background music
+            // soundBank.PlayCue("overworld_theme");
+
+            /**************************************************************************************/
+            // Screen stuff for the menu
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.ApplyChanges();
@@ -106,6 +136,8 @@ namespace EndlessQuest
 
             btnPlay = new Button(Content.Load<Texture2D>(@"Images\menu"), graphics.GraphicsDevice);
             btnPlay.setPosition(new Vector2(350, 300));
+
+            /**************************************************************************************/
         }
 
         /// <summary>
@@ -127,6 +159,26 @@ namespace EndlessQuest
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            else
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                {
+                    foreach (ParallaxLayer layer in listParallaxLayer)
+                    {
+                        layer.MoveLeft(gameTime);
+                    }
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                    {
+                        foreach (ParallaxLayer layer in listParallaxLayer)
+                        {
+                            layer.MoveRight(gameTime);
+                        }
+                    }
+                }
+            }
 
             //Allows the game to exit via keyboard
             if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
@@ -141,7 +193,6 @@ namespace EndlessQuest
                         if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
                         btnPlay.Update(mouse);
                         break;
-
                     }
                 case GameState.Playing: break;
 
@@ -165,13 +216,20 @@ namespace EndlessQuest
             switch (CurrentGameState)
             {
                 case GameState.MainMenu:
-                {
-                    spriteBatch.Draw(Content.Load<Texture2D>(@"Images\menu"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-                    btnPlay.Draw(spriteBatch);
-                    break;
-                }
-                case GameState.Playing: break;
+                    {
+                        spriteBatch.Draw(Content.Load<Texture2D>(@"Images\menu"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                        btnPlay.Draw(spriteBatch);
+                        break;
+                    }
+                case GameState.Playing:
+                    //Components.Add(spriteManager);
+                    foreach (ParallaxLayer layer in listParallaxLayer)
+                    {
+                        layer.Draw(spriteBatch);
+                    }
 
+
+                    break;
             }
 
             spriteBatch.End();

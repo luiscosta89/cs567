@@ -47,6 +47,51 @@
       <Extra>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.wma</Extra>
       <Time>2015-03-11T17:39:43.4154083-05:00</Time>
     </Item>
+    <Item>
+      <Source>Images\l1.png</Source>
+      <Name>Images\l1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l1.xnb</Output>
+      <Time>2015-03-13T23:18:54.0812024-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\l2.png</Source>
+      <Name>Images\l2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l2.xnb</Output>
+      <Time>2015-03-13T23:18:54.0892081-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\l3.png</Source>
+      <Name>Images\l3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l3.xnb</Output>
+      <Time>2015-03-13T23:18:54.0942104-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\l4.png</Source>
+      <Name>Images\l4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l4.xnb</Output>
+      <Time>2015-03-13T23:18:54.0982137-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\l5.png</Source>
+      <Name>Images\l5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l5.xnb</Output>
+      <Time>2015-03-13T23:18:54.0741967-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{D4E83B22-7E62-4A26-A27D-C17A5824433B}</ContentProjectGUID>
