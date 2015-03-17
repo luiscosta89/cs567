@@ -17,6 +17,7 @@ namespace EndlessQuest
         Texture2D texture;
         Vector2 position;
         Rectangle rectangle;
+        public int value;  // 1 for Soldier, 2 for Mage
 
         Color colour = new Color(255, 255, 255, 255);
 

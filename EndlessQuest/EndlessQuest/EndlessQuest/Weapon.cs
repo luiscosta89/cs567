@@ -14,8 +14,8 @@ namespace EndlessQuest
 {
     class Weapon : Sprite
     {
-        private string weaponName;
-        private int damage;
+        public string weaponName;
+        public int damage;
 
         public override Vector2 Direction
         {

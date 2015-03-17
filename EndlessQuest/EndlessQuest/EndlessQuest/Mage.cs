@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EndlessQuest
 {
-    class Mage : Player
+    class Mage : Sprite
     {
         public override Vector2 Direction
         {

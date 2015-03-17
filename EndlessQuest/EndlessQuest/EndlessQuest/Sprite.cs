@@ -17,6 +17,7 @@ namespace EndlessQuest
         //Information to draw the sprite
         Texture2D textureImage;
         protected Point frameSize;
+        protected float scale {get; set;}
         Point currentFrame;
         Point sheetSize;
 

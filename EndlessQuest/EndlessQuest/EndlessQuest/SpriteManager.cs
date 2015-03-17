@@ -16,9 +16,14 @@ namespace EndlessQuest
         //SpriteBatch for drawing
         SpriteBatch spriteBatch;
 
+        Camera camera;
+
         //A sprite for the player and a list of automated sprites
-        UserControlledSprite player;
+        
+        Player player;
         List<Sprite> spriteList = new List<Sprite>();
+
+        public float spriteScale = 0.5f;
 
         public SpriteManager(Game game)
             : base(game)
@@ -31,25 +36,27 @@ namespace EndlessQuest
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
 
             //Load the player sprite
-            player = new UserControlledSprite(Game.Content.Load<Texture2D>(@"Images/luigi_sheet"),
-                                              Vector2.Zero, new Point(30, 35), 10, new Point(0, 0), new Point(6, 1), new Vector2(3, 3));
+            player = new Player(Game.Content.Load<Texture2D>(@"Images/char_spritesheet"),
+                                              new Vector2(0, 530), new Point(28, 20), 10, new Point(0, 0), new Point(5, 1), new Vector2(3, 3));
 
             //Load several different automated sprites into the list
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(150, 150),
+            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(150, 530),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(300, 150),
+            /*spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(300, 150),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
             spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(150, 300),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
             spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(600, 150),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            base.LoadContent();
+            base.LoadContent();*/
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Rectangle clientBounds)
         {
             //Update player
             player.Update(gameTime, Game.Window.ClientBounds);
+
+            camera.Update(position.X, clientBounds.Width, clientBounds.Height);
 
             //Update all sprites
             foreach (Sprite s in spriteList)

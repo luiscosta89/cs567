@@ -9,6 +9,10 @@ Content\Images\l2.xnb
 Content\Images\l3.xnb
 Content\Images\l4.xnb
 Content\Images\l5.xnb
+Content\Audio\main_theme.xnb
+Content\Audio\main_theme.wma
+Content\Fonts\Arial.xnb
+Content\Images\char_spritesheet.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb

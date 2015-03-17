@@ -35,17 +35,17 @@ namespace EndlessQuest
         public override void Update(GameTime gameTime, Rectangle clientBounds)
         {
             // First, move the sprite along its direction vector
-            position += speed;
+            ///position += speed;
 
             //make them bounce off walls            
-            if (position.X <= 0)
+            /*if (position.X <= 0)
                 speed.X *= -1;
             else if (position.X >= clientBounds.Width - frameSize.X)
                 speed.X *= -1;
             if (position.Y <= 0)
                 speed.Y *= -1;
             else if (position.Y >= clientBounds.Height - frameSize.Y)
-                speed.Y *= -1;
+                speed.Y *= -1;*/
 
             base.Update(gameTime, clientBounds);
         }
