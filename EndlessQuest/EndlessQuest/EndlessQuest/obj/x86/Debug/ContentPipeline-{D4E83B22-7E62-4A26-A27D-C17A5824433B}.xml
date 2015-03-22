@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Images\button.png</Source>
-      <Name>Images\button</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\button.xnb</Output>
-      <Time>2015-03-11T16:19:12.6094693-05:00</Time>
-    </Item>
-    <Item>
       <Source>Images\menu.png</Source>
       <Name>Images\menu</Name>
       <Importer>TextureImporter</Importer>
@@ -45,7 +36,7 @@
       <Options>None</Options>
       <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.xnb</Output>
       <Extra>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.wma</Extra>
-      <Time>2015-03-11T17:39:43.4154083-05:00</Time>
+      <Time>2015-03-05T17:59:14.0615114-06:00</Time>
     </Item>
     <Item>
       <Source>Images\l1.png</Source>
@@ -119,6 +110,51 @@
       <Options>None</Options>
       <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\char_spritesheet.xnb</Output>
       <Time>2015-03-16T04:11:39.5559184-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\hab1_button.png</Source>
+      <Name>Images\hab1_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab1_button.xnb</Output>
+      <Time>2015-03-19T14:05:10.4686334-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\play_button.png</Source>
+      <Name>Images\play_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\play_button.xnb</Output>
+      <Time>2015-03-18T15:53:15.7645239-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\quit_button.png</Source>
+      <Name>Images\quit_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\quit_button.xnb</Output>
+      <Time>2015-03-18T15:53:15.7845385-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\hab2_button.png</Source>
+      <Name>Images\hab2_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab2_button.xnb</Output>
+      <Time>2015-03-19T14:07:20.8577974-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\hab3_button.png</Source>
+      <Name>Images\hab3_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab3_button.xnb</Output>
+      <Time>2015-03-19T14:07:20.8734235-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -1,4 +1,3 @@
-Content\Images\button.xnb
 Content\Images\menu.xnb
 Content\Images\goomba_sheet.xnb
 Content\Images\luigi_sheet.xnb
@@ -13,6 +12,12 @@ Content\Audio\main_theme.xnb
 Content\Audio\main_theme.wma
 Content\Fonts\Arial.xnb
 Content\Images\char_spritesheet.xnb
+Content\Images\hab1_button.xnb
+Content\Images\play_button.xnb
+Content\Images\quit_button.xnb
+Content\Images\hab2_button.xnb
+Content\Images\hab3_button.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
+Content\Audio\GameAudio.xap

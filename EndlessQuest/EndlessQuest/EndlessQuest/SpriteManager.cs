@@ -13,17 +13,14 @@ namespace EndlessQuest
 {
     public class SpriteManager : Microsoft.Xna.Framework.DrawableGameComponent
     {
+        public bool collisionHappened = false;
+        
         //SpriteBatch for drawing
         SpriteBatch spriteBatch;
-
-        Camera camera;
-
-        //A sprite for the player and a list of automated sprites
         
+        //A sprite for the player and a list of automated sprites
         Player player;
         List<Sprite> spriteList = new List<Sprite>();
-
-        public float spriteScale = 0.5f;
 
         public SpriteManager(Game game)
             : base(game)
@@ -37,26 +34,24 @@ namespace EndlessQuest
 
             //Load the player sprite
             player = new Player(Game.Content.Load<Texture2D>(@"Images/char_spritesheet"),
-                                              new Vector2(0, 530), new Point(28, 20), 10, new Point(0, 0), new Point(5, 1), new Vector2(3, 3));
+                                              new Vector2(0, 535), new Point(28, 20), 10, new Point(0, 0), new Point(5, 1), new Vector2(1, 1));
 
             //Load several different automated sprites into the list
             spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(150, 530),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            /*spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(300, 150),
+            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(300, 530),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(150, 300),
+            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(450, 530),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(600, 150),
+            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(600, 530),
                            new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            base.LoadContent();*/
+            base.LoadContent();
         }
 
-        public override void Update(GameTime gameTime, Rectangle clientBounds)
+        public override void Update(GameTime gameTime)
         {
             //Update player
             player.Update(gameTime, Game.Window.ClientBounds);
-
-            camera.Update(position.X, clientBounds.Width, clientBounds.Height);
 
             //Update all sprites
             foreach (Sprite s in spriteList)
@@ -65,9 +60,15 @@ namespace EndlessQuest
 
                 //Check for collisions and exit game if there is one
                 if (s.CollisionRect.Intersects(player.CollisionRect))
-                {                       
+                {
+                    collisionHappened = true;
+                    HUD.changeHealthPoints(-5);
+                    if (HUD.healthPoints <= 0)
+                        //Exits game in case player's life reaches zero
+                        Game.Exit();
                     // Play collision sound
                     if (s.collisionCueName != null)
+                        //Game.Exit();
                         ((Game1)Game).PlayCue(s.collisionCueName);
                 }
             }

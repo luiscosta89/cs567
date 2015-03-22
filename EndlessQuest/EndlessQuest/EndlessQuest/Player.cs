@@ -40,6 +40,8 @@ namespace EndlessQuest
             {
                 Vector2 inputDirection = Vector2.Zero;
 
+                inputDirection.X += 1;
+
                 //If player pressed arrow keys, move the sprite
                 if (Keyboard.GetState().IsKeyDown(Keys.Left))
                     inputDirection.X -= 1;
@@ -51,7 +53,7 @@ namespace EndlessQuest
                     inputDirection.Y += 1;
                 
                 //If player pressed Space Bar, make the sprite jump and fall
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false)
+               /* if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false)
                 {
                     inputDirection.Y -= 1f;
                     speed.Y -= 5f;
@@ -64,7 +66,7 @@ namespace EndlessQuest
                 if(hasJumped == false)
                 {
                     speed.Y = 0f;
-                }
+                }*/
 
                 //If player pressed the gamepad thumbstick, move the sprite
                 GamePadState gamepadState = GamePad.GetState(PlayerIndex.One);

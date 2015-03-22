@@ -12,15 +12,24 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EndlessQuest
 {
-    class HUD
+    public class HUD
     {
         private Vector2 healthPointsPos = new Vector2(20, 10);
         private Vector2 magicPointsPos = new Vector2(20, 30);
 
         public SpriteFont Font { get; set; }
 
-        public int healthPoints { get; set; }
-        public int magicPoints { get; set; }
+        public static int healthPoints = 100;
+        public static int magicPoints = 50;
+
+        public static void changeHealthPoints (int points)
+        {
+            healthPoints += points;
+        }
+        public static void changeMagicPoints (int points)
+        {
+            magicPoints += points;
+        }
 
         public HUD()
         {
