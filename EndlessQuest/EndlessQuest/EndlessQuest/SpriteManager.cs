@@ -27,7 +27,7 @@ namespace EndlessQuest
         SpriteBatch spriteBatch;
         
         //A sprite for the player and a list of automated sprites
-        public Player Player
+        public Player GetPlayer
         {
             get { return player; }
         }
@@ -65,32 +65,33 @@ namespace EndlessQuest
 
         private int RandomNumber(int min, int max)
         {
-            Random random = new Random();
-            return random.Next(min, max);
+            //Random random = new Random();
+            //return random.Next(min, max);
+            Random rndNum = new Random(int.Parse(Guid.NewGuid().ToString().Substring(0, 8), System.Globalization.NumberStyles.HexNumber));
+
+            int rnd = rndNum.Next(min, max);
+
+            return rnd;
         }
-        
+            
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-
-
-            
-            //Font = Content.Load<SpriteFont>(@"Fonts\Arial");
+            int randomValue;
 
             //Load the player sprite
             player = new Player(Game.Content.Load<Texture2D>(@"Images/char_spritesheet"),
                                               new Vector2(0, 515), new Point(28, 20), 10, new Point(0, 0), new Point(5, 1), new Vector2(1, 1));
 
-            //Load several different automated sprites into the list
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(150, 510),
-                           new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(300, 510),
-                           new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(450, 510),
-                           new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(600, 510),
-                           new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
-            base.LoadContent();
+            //Load a random number of different enemy sprites in random positions
+            for (int i = 0; i < RandomNumber(3, 10); i++)
+            {
+                randomValue = RandomNumber(200, 750);
+                spriteList.Insert(i, new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(randomValue, 510),
+                new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));                
+            }             
+
+                base.LoadContent();
         }
 
         /**************************************************************************************/
@@ -120,7 +121,31 @@ namespace EndlessQuest
                 spriteList[number].GetHealthPoints -= player.GetIntelligence;
                 player.GetVitality -= 5; // Each attack decreases by 5 the player vitality
         }
+
+        //Player special skills
+        public void FireAttck(int number)
+        {
+            if (spriteList[number].GetHealthPoints == 0)
+                spriteList.RemoveAt(number);
+            else
+                spriteList[number].GetHealthPoints -= player.GetMagicPoints;       
+        }
+
+        public void WaterAttack(int number)
+        {
+            if (spriteList[number].GetHealthPoints == 0)
+                spriteList.RemoveAt(number);
+            else
+                spriteList[number].GetHealthPoints -= player.GetMagicPoints;       
+        }
         
+        public void NatureAttack(int number)
+        {
+            if (spriteList[number].GetHealthPoints == 0)
+                spriteList.RemoveAt(number);
+            else
+                spriteList[number].GetHealthPoints -= player.GetMagicPoints;       
+        }
         
         /**************************************************************************************/
                 
@@ -167,7 +192,7 @@ namespace EndlessQuest
                     if (s.collisionCueName != null)
                         ((Game1)Game).PlayCue(s.collisionCueName);
                 }
-                //collisionHappened = false;
+                collisionHappened = false;
 
                 /*if (timer < 0)
                 {

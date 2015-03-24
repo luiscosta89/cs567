@@ -20,16 +20,30 @@ namespace EndlessQuest
         //private string name;
         private int healthPoints = 100;
         private int magicPoints = 50;
+        private int level = 1;
 
         private int vitality = 50;
         private int intelligence = 20;
-        private int agility;
+        private int agility = 45;
         private int dextrexity = 30;
-        private int strength;
+        private int strength = 60;
         private int defense = 80;
 
+        private int experience = 0;
 
         /**************************************************************************************/
+                
+        public int GetLevel
+        {
+            get { return level; }
+            set { level = value; }
+        }
+        
+        public int GetExperience
+        {
+            get { return experience; }
+            set { experience = value; }
+        }
         
         public int GetIntelligence
         {
@@ -59,7 +73,7 @@ namespace EndlessQuest
         bool hasItem = true;
 
         //Movement data
-        MouseState prevMouseState;
+        //MouseState prevMouseState;
 
         //Jumping data
         Vector2 currentPosition;

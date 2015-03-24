@@ -26,6 +26,8 @@ namespace EndlessQuest
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Camera camera;
         
         public Random rnd { get; private set; }
 
@@ -85,6 +87,7 @@ namespace EndlessQuest
         // List of layers
         private List<ParallaxLayer> layers;
 
+             
         float firstBackgroundSpeed = 100f;
         float secondBackgroundSpeed = 0.3f;
         
@@ -114,6 +117,10 @@ namespace EndlessQuest
         {
             // TODO: Add your initialization logic here
             spriteManager = new SpriteManager(this);
+
+            camera = new Camera(GraphicsDevice.Viewport);
+
+            //float cameraSpeed = spriteManager.Player.GetSpeed.X;
 
             // starting x and y locations to stack buttons 
             // vertically in the middle of the screen
@@ -151,6 +158,12 @@ namespace EndlessQuest
             
             this.layers = new List<ParallaxLayer>();
 
+            /*ParallaxLayer firstLayer = new ParallaxLayer(cameraSpeed, 0);
+            ParallaxLayer secondLayer = new ParallaxLayer(cameraSpeed, 0);
+            ParallaxLayer thirdLayer = new ParallaxLayer(cameraSpeed, 0);
+            ParallaxLayer fourthLayer = new ParallaxLayer(cameraSpeed, 0);
+            ParallaxLayer fifthLayer = new ParallaxLayer(cameraSpeed, 0);*/
+            
             ParallaxLayer firstLayer = new ParallaxLayer(firstBackgroundSpeed * secondBackgroundSpeed, 0);
             ParallaxLayer secondLayer = new ParallaxLayer(firstBackgroundSpeed, 0);
             ParallaxLayer thirdLayer = new ParallaxLayer(firstBackgroundSpeed, 0);
@@ -281,7 +294,7 @@ namespace EndlessQuest
             // Does the battle logic to stop player movemente
             if (spriteManager.GetCollision == true)
             {
-                spriteManager.Player.GetPosition = spriteManager.GetCurrentCollisionPosition;
+                spriteManager.GetPlayer.GetPosition = spriteManager.GetCurrentCollisionPosition;
             }
 
             
@@ -302,6 +315,8 @@ namespace EndlessQuest
 
             update_buttons();
             //spriteManager.GetCollision = false;
+
+            camera.Update(gameTime, this);
 
             base.Update(gameTime);
         }
@@ -417,19 +432,25 @@ namespace EndlessQuest
                 case SKILL1_BUTTON_INDEX:
                     if(spriteManager.GetCollision)
                     {
-                        spriteManager.NormalAttack(spriteManager.GetIndex);                        
+                        spriteManager.NormalAttack(spriteManager.GetIndex);
+                        //After each attack, the player earns experience points
+                        spriteManager.GetPlayer.GetExperience += 5;
                     }
                     break;
                 case SKILL2_BUTTON_INDEX:
                     if (spriteManager.GetCollision)
                     {
                         spriteManager.ChargeAttack(spriteManager.GetIndex);
+                        //After each attack, the player earns experience points
+                        spriteManager.GetPlayer.GetExperience += 5;
                     }
                     break;
                 case SKILL3_BUTTON_INDEX:
                     if (spriteManager.GetCollision)
                     {
                         spriteManager.SacrificeAttack(spriteManager.GetIndex);
+                        //After each attack, the player earns experience points
+                        spriteManager.GetPlayer.GetExperience += 5;
                     }
                     break;
                 default:
@@ -445,7 +466,8 @@ namespace EndlessQuest
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
+               
 
             switch (CurrentGameState)
             {

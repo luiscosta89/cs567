@@ -35,19 +35,13 @@ namespace EndlessQuest
 
         public Vector2 GetSpeed
         {
-            get
-            {
-                return this.speed;
-            }
+            get {return speed;}
         }
 
         public Vector2 GetPosition
         {
-            get
-            {
-                return this.position;
-            }
-            set { this.position = value; }
+            get {return position;}
+            set {position = value; }
         }
 
         //Abstract definition of direction properly
