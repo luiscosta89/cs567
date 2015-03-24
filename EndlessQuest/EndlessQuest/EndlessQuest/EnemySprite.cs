@@ -17,7 +17,28 @@ namespace EndlessQuest
 
         public override Vector2 Direction
         {
-            get { return speed; }
+            get { return speed; }            
+        }
+
+        public int healthPoints = 100;
+        public int damagePoints = 2;
+        public bool isAlive = true;
+
+        public bool isAliveValue
+        {
+            get { return isAlive; }
+            set { isAlive = value; }
+        }
+
+        public int GetHealthPoints
+        {
+            get { return healthPoints; }
+            set { healthPoints = value; }
+        }
+
+        public int GetDamagePoints
+        {
+            get { return damagePoints; }
         }
 
         public EnemySprite(Texture2D textureImage, Vector2 position, Point frameSize,

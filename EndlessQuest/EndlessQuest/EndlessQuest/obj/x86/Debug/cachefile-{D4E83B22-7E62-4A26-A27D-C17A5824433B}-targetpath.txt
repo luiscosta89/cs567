@@ -1,6 +1,5 @@
 Content\Images\menu.xnb
 Content\Images\goomba_sheet.xnb
-Content\Images\luigi_sheet.xnb
 Content\Audio\overworld_theme.xnb
 Content\Audio\overworld_theme.wma
 Content\Images\l1.xnb

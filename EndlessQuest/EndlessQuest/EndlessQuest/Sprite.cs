@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EndlessQuest
 {
-    abstract class Sprite
+    public abstract class Sprite
     {
         //Information to draw the sprite
         Texture2D textureImage;
@@ -33,10 +33,27 @@ namespace EndlessQuest
         protected Vector2 speed;
         protected Vector2 position;
 
+        public Vector2 GetSpeed
+        {
+            get
+            {
+                return this.speed;
+            }
+        }
+
+        public Vector2 GetPosition
+        {
+            get
+            {
+                return this.position;
+            }
+            set { this.position = value; }
+        }
+
         //Abstract definition of direction properly
         public abstract Vector2 Direction
         {
-            get;
+            get;            
         }
 
         public string collisionCueName { get; private set; }
@@ -67,7 +84,7 @@ namespace EndlessQuest
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textureImage, position, new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y, frameSize.X, frameSize.Y),
-                             Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+                             Color.White, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
         }
         
         public virtual void Update(GameTime gameTime, Rectangle clientBounds)

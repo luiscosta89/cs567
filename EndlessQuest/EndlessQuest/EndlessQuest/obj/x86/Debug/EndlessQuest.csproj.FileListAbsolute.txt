@@ -6,7 +6,6 @@ C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQ
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\obj\x86\Debug\EndlessQuest.exe
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\obj\x86\Debug\EndlessQuest.pdb
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\goomba_sheet.xnb
-C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\luigi_sheet.xnb
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.xnb
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.wma
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l1.xnb
@@ -27,3 +26,31 @@ C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQ
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\GameAudio.xgs
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\Wave Bank.xwb
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\Sound Bank.xsb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l1.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l2.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l3.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l4.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\l5.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\menu.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\goomba_sheet.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\char_spritesheet.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\play_button.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\quit_button.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab1_button.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab2_button.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab3_button.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\main_theme.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Fonts\Arial.xnb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.wma
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\main_theme.wma
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\GameAudio.xgs
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\Wave Bank.xwb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\Sound Bank.xsb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\GameAudio.xap
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\EndlessQuest.exe
+E:\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\EndlessQuest.pdb
+E:\EndlessQuest\EndlessQuest\EndlessQuest\obj\x86\Debug\EndlessQuest.csprojResolveAssemblyReference.cache
+E:\EndlessQuest\EndlessQuest\EndlessQuest\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\EndlessQuest\EndlessQuest\EndlessQuest\obj\x86\Debug\EndlessQuest.exe
+E:\EndlessQuest\EndlessQuest\EndlessQuest\obj\x86\Debug\EndlessQuest.pdb

@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -28,7 +29,6 @@ namespace EndlessQuest
         
         public Random rnd { get; private set; }
 
-
         /**************************************************************************************/
         // Global variables for buttons
         enum BState
@@ -41,9 +41,9 @@ namespace EndlessQuest
         const int NUMBER_OF_BUTTONS = 5,
             PLAY_BUTTON_INDEX = 0,
             QUIT_BUTTON_INDEX = 1,
-            HAB1_BUTTON_INDEX = 2,
-            HAB2_BUTTON_INDEX = 3,
-            HAB3_BUTTON_INDEX = 4,
+            SKILL1_BUTTON_INDEX = 2,
+            SKILL2_BUTTON_INDEX = 3,
+            SKILL3_BUTTON_INDEX = 4,
             BUTTON_HEIGHT = 40,
             BUTTON_WIDTH = 88;
         Color background_color;
@@ -72,17 +72,15 @@ namespace EndlessQuest
         GameState CurrentGameState = GameState.MainMenu;
 
         // Screen adjustments
-        int screenWidth = 800, screenHeight = 600;
+        int screenWidth = 800, screenHeight = 600;        
 
-        SpriteManager spriteManager;
+        public SpriteManager spriteManager;
 
         //Audio components
         AudioEngine audioEngine;
         WaveBank waveBank;
         SoundBank soundBank;
-        Cue currentSong;
-
-        public HUD hud;
+        Cue currentSong;       
 
         // List of layers
         private List<ParallaxLayer> layers;
@@ -94,7 +92,7 @@ namespace EndlessQuest
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            rnd = new Random();
+            rnd = new Random();          
         }
 
         // Play Music Cue
@@ -105,9 +103,7 @@ namespace EndlessQuest
 
         /**************************************************************************************/
         
-       
-        /**************************************************************************************/      
-        
+              
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -118,8 +114,6 @@ namespace EndlessQuest
         {
             // TODO: Add your initialization logic here
             spriteManager = new SpriteManager(this);
-
-            /**************************************************************************************/
 
             // starting x and y locations to stack buttons 
             // vertically in the middle of the screen
@@ -173,6 +167,11 @@ namespace EndlessQuest
             base.Initialize();
         }
 
+        public void Quit()
+        {
+            this.Exit();
+        }        
+        
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -183,19 +182,19 @@ namespace EndlessQuest
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteManager = new SpriteManager(this);
 
-            hud = new HUD();
-            hud.Font = Content.Load<SpriteFont>(@"Fonts\Arial");
+            // Load the Font for the HUD
+            spriteManager.Font = Content.Load<SpriteFont>(@"Fonts\Arial");
 
             /**************************************************************************************/
             button_texture[PLAY_BUTTON_INDEX] =
                 Content.Load<Texture2D>(@"Images/play_button");
             button_texture[QUIT_BUTTON_INDEX] =
                 Content.Load<Texture2D>(@"Images/quit_button");
-            button_texture[HAB1_BUTTON_INDEX] =
+            button_texture[SKILL1_BUTTON_INDEX] =
                 Content.Load<Texture2D>(@"Images/hab1_button");
-            button_texture[HAB2_BUTTON_INDEX] =
+            button_texture[SKILL2_BUTTON_INDEX] =
                 Content.Load<Texture2D>(@"Images/hab2_button");
-            button_texture[HAB3_BUTTON_INDEX] =
+            button_texture[SKILL3_BUTTON_INDEX] =
                 Content.Load<Texture2D>(@"Images/hab3_button");
             
            /**************************************************************************************/
@@ -218,7 +217,7 @@ namespace EndlessQuest
 
             /**************************************************************************************/
 
-            //carrega as imagens das camadas
+            // Load the layers
             this.layers[0].LoadContent(Content, @"Images/l1");
             this.layers[1].LoadContent(Content, @"Images/l2");
             this.layers[2].LoadContent(Content, @"Images/l3");
@@ -267,13 +266,10 @@ namespace EndlessQuest
 
             // Allows the game to exit via keyboard
             if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
-                this.Exit();
+                this.Exit();           
 
-            /**************************************************************************************/
-                    
+            /**************************************************************************************/                          
                        
-            /**************************************************************************************/
-            
             // Update layers
             foreach (ParallaxLayer layer in this.layers)
             {
@@ -281,8 +277,15 @@ namespace EndlessQuest
             }          
             
             /**************************************************************************************/
+
+            // Does the battle logic to stop player movemente
+            if (spriteManager.GetCollision == true)
+            {
+                spriteManager.Player.GetPosition = spriteManager.GetCurrentCollisionPosition;
+            }
+
             
-            
+                   
             /**************************************************************************************/
 
             // TODO: Add your update logic here
@@ -298,18 +301,19 @@ namespace EndlessQuest
             mpressed = mouse_state.LeftButton == ButtonState.Pressed;
 
             update_buttons();
+            //spriteManager.GetCollision = false;
 
             base.Update(gameTime);
         }
 
-        // wrapper for hit_image_alpha taking Rectangle and Texture
+        // Wrapper for hit_image_alpha taking Rectangle and Texture
         Boolean hit_image_alpha(Rectangle rect, Texture2D tex, int x, int y)
         {
             return hit_image_alpha(0, 0, tex, tex.Width * (x - rect.X) /
                 rect.Width, tex.Height * (y - rect.Y) / rect.Height);
         }
 
-        // wraps hit_image then determines if hit a transparent part of image 
+        // Wraps hit_image then determines if hit a transparent part of image 
         Boolean hit_image_alpha(float tx, float ty, Texture2D tex, int x, int y)
         {
             if (hit_image(tx, ty, tex, x, y))
@@ -328,7 +332,7 @@ namespace EndlessQuest
             return false;
         }
 
-        // determine if x,y is within rectangle formed by texture located at tx,ty
+        // Determine if x,y is within rectangle formed by texture located at tx,ty
         Boolean hit_image(float tx, float ty, Texture2D tex, int x, int y)
         {
             return (x >= tx &&
@@ -337,7 +341,7 @@ namespace EndlessQuest
                 y <= ty + tex.Height);
         }
        
-        // determine state and color of button
+        // Determine state and color of button
         void update_buttons()
         {
             for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
@@ -409,10 +413,24 @@ namespace EndlessQuest
                     }
                 case QUIT_BUTTON_INDEX:
                     this.Exit();
-                    background_color = Color.Yellow;
                     break;
-                case HAB1_BUTTON_INDEX:
-                    background_color = Color.Red;
+                case SKILL1_BUTTON_INDEX:
+                    if(spriteManager.GetCollision)
+                    {
+                        spriteManager.NormalAttack(spriteManager.GetIndex);                        
+                    }
+                    break;
+                case SKILL2_BUTTON_INDEX:
+                    if (spriteManager.GetCollision)
+                    {
+                        spriteManager.ChargeAttack(spriteManager.GetIndex);
+                    }
+                    break;
+                case SKILL3_BUTTON_INDEX:
+                    if (spriteManager.GetCollision)
+                    {
+                        spriteManager.SacrificeAttack(spriteManager.GetIndex);
+                    }
                     break;
                 default:
                     break;
@@ -450,7 +468,6 @@ namespace EndlessQuest
                     {
                         layer.Draw(spriteBatch);
                     }
-                    hud.Draw(spriteBatch);
                     // Draw button
                     spriteBatch.Draw(button_texture[2], button_rectangle[2], button_color[2]);
                     spriteBatch.Draw(button_texture[3], button_rectangle[3], button_color[3]);

@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+//using EndlessQuest.Sprite;
+//using EndlessQuest.Player;
 
 namespace EndlessQuest
 {
@@ -17,6 +19,7 @@ namespace EndlessQuest
         private Texture2D image;
         private Vector2 position;
         private Vector2 speed;
+        
 
         public Vector2 Position
         {
@@ -39,8 +42,11 @@ namespace EndlessQuest
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            //Use speed from player but this update must be after the collision detection
             this.position.X -= this.speed.X * deltaTime;
             this.position.X = this.position.X % this.image.Width;
+
+            //this.position.X -= 
 
             /*
             if (this.posicao.X < -this.imagem.Width)
@@ -53,5 +59,7 @@ namespace EndlessQuest
             batch.Draw(this.image, this.position, Color.White);
             batch.Draw(this.image, new Vector2(this.position.X + this.image.Width, 0), Color.White);
         }
+
+        public float player { get; set; }
     }
 }

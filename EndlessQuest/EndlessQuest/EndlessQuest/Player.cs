@@ -13,61 +13,90 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EndlessQuest
 {
-    class Player : Sprite
+    public class Player : Sprite
     {
-        private string name;
-        private int healthPoints;
-        private int magicPoints;
-
-        private string armorName;
-
-        private int vitality;
-        private int intelligence;
-        private int agility;
-        private int dextrexity;
-        private int strength;
-        private int defense;
-
-        bool hasJumped = true;
-        bool hasItem = true;
+        GraphicsDeviceManager graphics;
         
+        //private string name;
+        private int healthPoints = 100;
+        private int magicPoints = 50;
+
+        private int vitality = 50;
+        private int intelligence = 20;
+        private int agility;
+        private int dextrexity = 30;
+        private int strength;
+        private int defense = 80;
+
+
+        /**************************************************************************************/
+        
+        public int GetIntelligence
+        {
+            get { return intelligence; }
+        }
+
+        public int GetDextrexity
+        {
+            get { return dextrexity; }
+        }
+
+        public int GetVitality
+        {
+            get { return vitality; }
+            set { vitality = value; }
+        }
+
+        public int GetDefense
+        {
+            get { return defense; }
+            set { defense = value; }
+        }
+
+        /**************************************************************************************/
+
+        bool hasJumped = false;
+        bool hasItem = true;
+
         //Movement data
         MouseState prevMouseState;
+
+        //Jumping data
+        Vector2 currentPosition;
+        Vector2 nextPosition;
+
+        public int GetHealthPoints
+        {
+            get { return healthPoints; }
+            set { healthPoints = value; }
+        }
+
+        public int GetMagicPoints
+        {
+            get { return magicPoints; }
+            set { magicPoints = value; }
+        }
+             
         //Get direction of sprite based on layer input and speed
         public override Vector2 Direction
         {
             get
             {
                 Vector2 inputDirection = Vector2.Zero;
-
-                inputDirection.X += 1;
-
+                
+                // The player runs automatically
+                inputDirection.X += 0.5f;
+                
                 //If player pressed arrow keys, move the sprite
                 if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    inputDirection.X -= 1;
+                    inputDirection.X -= 0.5f;
                 if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                    inputDirection.X += 1;
+                    inputDirection.X += 0.5f;
                 if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                    inputDirection.Y -= 1;
+                    inputDirection.Y -= 0.5f;
                 if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    inputDirection.Y += 1;
+                    inputDirection.Y += 0.5f;                
                 
-                //If player pressed Space Bar, make the sprite jump and fall
-               /* if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false)
-                {
-                    inputDirection.Y -= 1f;
-                    speed.Y -= 5f;
-                    hasJumped = true;                    
-                }
-                if(hasJumped == true)
-                {
-                    speed.Y += 5f;
-                }
-                if(hasJumped == false)
-                {
-                    speed.Y = 0f;
-                }*/
-
                 //If player pressed the gamepad thumbstick, move the sprite
                 GamePadState gamepadState = GamePad.GetState(PlayerIndex.One);
                 if (gamepadState.ThumbSticks.Left.X != 0)
@@ -77,6 +106,7 @@ namespace EndlessQuest
 
                 return inputDirection * speed;
             }
+            
         }
 
         public Player(Texture2D textureImage, Vector2 position, Point frameSize,
@@ -93,16 +123,31 @@ namespace EndlessQuest
 
         public override void Update(GameTime gameTime, Rectangle clientBounds)
         {
-            //Move the sprite based on direction
-            position += Direction;
+            position += Direction;            
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                hasJumped = true;
+                //Direction.Y += 5f;
+                //currentPosition.Y -= 5f;
+               
+                
+                while (currentPosition.Y >= 400)
+                {
+                    currentPosition.Y -= 0.5f;
+                    speed.Y += 1.5f;
+                }
+            }
+
+            hasJumped = false;  
+          
             //If player moved the mouse, move the sprite
             MouseState currMouseState = Mouse.GetState();
             /*if(currMouseState.X != prevMouseState.X || currMouseState.Y != prevMouseState.Y)
             {
                 position = new Vector2(currMouseState.X, currMouseState.Y);
-            }*/
-            prevMouseState = currMouseState;
+            }
+            prevMouseState = currMouseState;*/
 
             //If sprite is off the screen, move it back within the game window
             if (position.X < 0)
@@ -115,8 +160,6 @@ namespace EndlessQuest
                 position.Y = clientBounds.Height - frameSize.Y;
 
             base.Update(gameTime, clientBounds);
-        }
-
-
+        }        
     }
 }

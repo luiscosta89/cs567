@@ -1,1 +1,3 @@
 C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuestContent\obj\x86\Debug\EndlessQuestContent.contentprojResolveAssemblyReference.cache
+E:\EndlessQuest\EndlessQuest\EndlessQuestContent\obj\x86\Debug\EndlessQuestContent.contentprojResolveAssemblyReference.cache
+E:\EndlessQuest\EndlessQuest\EndlessQuestContent\obj\x86\Debug\Audio\GameAudio.xml

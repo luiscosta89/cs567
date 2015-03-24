@@ -20,6 +20,7 @@ namespace EndlessQuest
         public override Vector2 Direction
         {
             get { return speed; }
+            
         }
 
          public Weapon(Texture2D textureImage, Vector2 position, Point frameSize,

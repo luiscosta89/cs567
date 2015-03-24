@@ -31,10 +31,6 @@ namespace EndlessQuest
             magicPoints += points;
         }
 
-        public HUD()
-        {
-        }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             // Draw the Score in the top-left of screen
