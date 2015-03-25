@@ -26,7 +26,7 @@ namespace EndlessQuest
 
         public void Update(GameTime gameTime, Game1 game)
         {
-            //centre = new Vector2(game.spriteManager.GetPlayer.Direction.X + 400, 0);
+            //centre = new Vector2(game. + 400, 0);
             transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * Matrix.CreateTranslation(new Vector3(-centre.X, -centre.Y, 0));
         }
     }

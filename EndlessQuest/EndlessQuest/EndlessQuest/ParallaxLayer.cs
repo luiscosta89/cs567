@@ -38,20 +38,15 @@ namespace EndlessQuest
             this.image = content.Load<Texture2D>(filename);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Game1 game)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             //Use speed from player but this update must be after the collision detection
+
+            //this.position.X = game.spriteManager.GetPlayer.GetSpeed.X * deltaTime;
             this.position.X -= this.speed.X * deltaTime;
-            this.position.X = this.position.X % this.image.Width;
-
-            //this.position.X -= 
-
-            /*
-            if (this.posicao.X < -this.imagem.Width)
-                this.posicao.X = 0;
-             */
+            this.position.X = this.position.X % this.image.Width;            
         }
 
         public void Draw(SpriteBatch batch)

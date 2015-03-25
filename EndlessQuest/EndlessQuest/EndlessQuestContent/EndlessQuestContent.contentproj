@@ -57,13 +57,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\menu.png">
-      <Name>menu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Images\goomba_sheet.png">
       <Name>goomba_sheet</Name>
       <Importer>TextureImporter</Importer>
@@ -77,18 +70,6 @@
       <Processor>XactProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Audio\overworld_theme.mp3">
-      <Name>overworld_theme</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Audio\main_theme.mp3">
-      <Name>main_theme</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\Arial.spritefont">
@@ -98,8 +79,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\char_spritesheet.png">
-      <Name>char_spritesheet</Name>
+    <Compile Include="Images\soldier_sheet.png">
+      <Name>soldier_sheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\menu.png">
+      <Name>menu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -117,22 +105,54 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\hab1_button.png">
-      <Name>hab1_button</Name>
+    <Compile Include="Images\mage_button.png">
+      <Name>mage_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\soldier_button.png">
+      <Name>soldier_button</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\hab2_button.png">
-      <Name>hab2_button</Name>
+    <Compile Include="Images\skill1_button.png">
+      <Name>skill1_button</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\hab3_button.png">
-      <Name>hab3_button</Name>
+    <Compile Include="Images\skill2_button.png">
+      <Name>skill2_button</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\skill3_button.png">
+      <Name>skill3_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\background.png">
+      <Name>background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\mage_sheet.png">
+      <Name>mage_sheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\bowser_sheet.png">
+      <Name>bowser_sheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 255, 0, 255</ProcessorParameters_ColorKeyColor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

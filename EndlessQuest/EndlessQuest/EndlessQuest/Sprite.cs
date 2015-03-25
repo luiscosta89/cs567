@@ -27,7 +27,7 @@ namespace EndlessQuest
         //Framerate data
         int timeSinceLastFrame = 0;
         int millisecondsPerFrame;
-        const int defaultMillisecondsPerFrame = 16;
+        const int defaultMillisecondsPerFrame = 50;
 
         //Movement data
         protected Vector2 speed;
@@ -36,6 +36,7 @@ namespace EndlessQuest
         public Vector2 GetSpeed
         {
             get {return speed;}
+            set { speed = value; }
         }
 
         public Vector2 GetPosition
@@ -78,7 +79,7 @@ namespace EndlessQuest
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textureImage, position, new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y, frameSize.X, frameSize.Y),
-                             Color.White, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
+                             Color.White, 0, Vector2.Zero, 3.0f, SpriteEffects.None, 0);
         }
         
         public virtual void Update(GameTime gameTime, Rectangle clientBounds)

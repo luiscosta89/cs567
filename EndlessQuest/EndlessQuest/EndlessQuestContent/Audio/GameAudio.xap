@@ -225,8 +225,8 @@ Wave Bank
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
     Compression Preset Name = <none>;
-    Bank Last Revised Low = 1744318914;
-    Bank Last Revised High = 30434124;
+    Bank Last Revised Low = 1173879945;
+    Bank Last Revised High = 30435036;
 
     Wave
     {
@@ -345,10 +345,10 @@ Wave Bank
 
     Wave
     {
-        Name = coin;
+        Name = normal_attack;
         File = coin.wav;
-        Build Settings Last Modified Low = 1677713199;
-        Build Settings Last Modified High = 30431178;
+        Build Settings Last Modified Low = 1509154128;
+        Build Settings Last Modified High = 30435024;
 
         Cache
         {
@@ -368,33 +368,10 @@ Wave Bank
 
     Wave
     {
-        Name = main_theme;
-        File = main_theme.wav;
-        Build Settings Last Modified Low = 19110329;
-        Build Settings Last Modified High = 30434118;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 2;
-            Sampling Rate = 48000;
-            Bits Per Sample = 1;
-            Play Region Offset = 80;
-            Play Region Length = 12579840;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 680460032;
-            Last Modified High = 30210233;
-        }
-    }
-
-    Wave
-    {
-        Name = first_level;
-        File = first_level.wav;
-        Build Settings Last Modified Low = 1709837745;
-        Build Settings Last Modified High = 30434124;
+        Name = menu_theme;
+        File = menu_theme.wav;
+        Build Settings Last Modified Low = 1509154128;
+        Build Settings Last Modified High = 30435024;
 
         Cache
         {
@@ -402,13 +379,197 @@ Wave Bank
             Channels = 2;
             Sampling Rate = 44100;
             Bits Per Sample = 1;
-            Play Region Offset = 196;
-            Play Region Length = 14174208;
+            Play Region Offset = 80;
+            Play Region Length = 14515388;
             Loop Region Offset = 0;
             Loop Region Length = 0;
             File Type = 1;
-            Last Modified Low = 3645051823;
-            Last Modified High = 30406368;
+            Last Modified Low = 3120306293;
+            Last Modified High = 30434921;
+        }
+    }
+
+    Wave
+    {
+        Name = level1_theme;
+        File = level1_theme.wav;
+        Build Settings Last Modified Low = 1509164131;
+        Build Settings Last Modified High = 30435024;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 80;
+            Play Region Length = 39633596;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3706197724;
+            Last Modified High = 30434921;
+        }
+    }
+
+    Wave
+    {
+        Name = selection_theme;
+        File = selection_theme.wav;
+        Build Settings Last Modified Low = 1509174138;
+        Build Settings Last Modified High = 30435024;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 2;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 80;
+            Play Region Length = 16805564;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 1937342429;
+            Last Modified High = 30434977;
+        }
+    }
+
+    Wave
+    {
+        Name = charge_attack;
+        File = charge_attack.wav;
+        Build Settings Last Modified Low = 1509184129;
+        Build Settings Last Modified High = 30435024;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 24132;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 755768562;
+            Last Modified High = 30435015;
+        }
+    }
+
+    Wave
+    {
+        Name = fire_attack;
+        File = fire_attack.wav;
+        Build Settings Last Modified Low = 1509194152;
+        Build Settings Last Modified High = 30435024;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 5798;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 819235332;
+            Last Modified High = 30435015;
+        }
+    }
+
+    Wave
+    {
+        Name = nature_attack;
+        File = nature_attack.wav;
+        Build Settings Last Modified Low = 1509204147;
+        Build Settings Last Modified High = 30435024;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 51150;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 1014211746;
+            Last Modified High = 30435015;
+        }
+    }
+
+    Wave
+    {
+        Name = water_attack;
+        File = water_attack.wav;
+        Build Settings Last Modified Low = 1509214146;
+        Build Settings Last Modified High = 30435024;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 34580;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2156264953;
+            Last Modified High = 30435017;
+        }
+    }
+
+    Wave
+    {
+        Name = sacrifice_attack;
+        File = sacrifice_attack.wav;
+        Build Settings Last Modified Low = 1509224154;
+        Build Settings Last Modified High = 30435024;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 50568;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2619547214;
+            Last Modified High = 30435015;
+        }
+    }
+
+    Wave
+    {
+        Name = attack;
+        File = attack.wav;
+        Build Settings Last Modified Low = 989995416;
+        Build Settings Last Modified High = 30435036;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 22050;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 18584;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 499343551;
+            Last Modified High = 30435036;
         }
     }
 }
@@ -648,7 +809,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = coin;
+                    Entry Name = normal_attack;
                     Entry Index = 5;
                     Weight = 255;
                     Weight Min = 0;
@@ -753,7 +914,7 @@ Sound Bank
 
     Sound
     {
-        Name = main_theme;
+        Name = menu_theme;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -789,7 +950,7 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = main_theme;
+                    Entry Name = menu_theme;
                     Entry Index = 6;
                     Weight = 255;
                     Weight Min = 0;
@@ -800,7 +961,7 @@ Sound Bank
 
     Sound
     {
-        Name = first_level;
+        Name = level1_theme;
         Volume = -1200;
         Pitch = 0;
         Priority = 0;
@@ -836,8 +997,384 @@ Sound Bank
                 {
                     Bank Name = Wave Bank;
                     Bank Index = 0;
-                    Entry Name = first_level;
+                    Entry Name = level1_theme;
                     Entry Index = 7;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = selection_theme;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = selection_theme;
+                    Entry Index = 8;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = fire_attack;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = fire_attack;
+                    Entry Index = 10;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = nature_attack;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = nature_attack;
+                    Entry Index = 11;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = charge_attack;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = charge_attack;
+                    Entry Index = 9;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = normal_attack;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = normal_attack;
+                    Entry Index = 5;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = water_attack;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = water_attack;
+                    Entry Index = 12;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = sacrifice_attack;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = sacrifice_attack;
+                    Entry Index = 13;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = attack;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = attack;
+                    Entry Index = 14;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -954,7 +1491,7 @@ Sound Bank
 
         Sound Entry
         {
-            Name = main_theme;
+            Name = menu_theme;
             Index = 6;
             Weight Min = 0;
             Weight Max = 255;
@@ -974,8 +1511,168 @@ Sound Bank
 
         Sound Entry
         {
-            Name = first_level;
+            Name = level1_theme;
             Index = 7;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = Selection;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = selection_theme;
+            Index = 8;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = NormalAttack;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = normal_attack;
+            Index = 12;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = ChargeAttack;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = charge_attack;
+            Index = 11;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = SacrificeAttack;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = sacrifice_attack;
+            Index = 14;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = FireAttack;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = fire_attack;
+            Index = 9;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = WaterAttack;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = water_attack;
+            Index = 13;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = NatureAttack;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = nature_attack;
+            Index = 10;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = EnemyAttack;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = attack;
+            Index = 15;
             Weight Min = 0;
             Weight Max = 255;
         }

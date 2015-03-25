@@ -24,6 +24,12 @@ namespace EndlessQuest
         public int damagePoints = 2;
         public bool isAlive = true;
 
+        //public Vector2 GetSpeed
+        //{
+        //   get { return speed; }
+        //   set { speed = value; }
+        //}
+
         public bool isAliveValue
         {
             get { return isAlive; }
@@ -56,7 +62,7 @@ namespace EndlessQuest
         public override void Update(GameTime gameTime, Rectangle clientBounds)
         {
             // First, move the sprite along its direction vector
-            ///position += speed;
+            position.X -= speed.X;
 
             //make them bounce off walls            
             /*if (position.X <= 0)

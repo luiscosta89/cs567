@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\menu.xnb</Output>
-      <Time>2015-03-11T16:19:12.6250405-05:00</Time>
+      <Time>2015-03-25T01:06:10-05:00</Time>
     </Item>
     <Item>
       <Source>Images\goomba_sheet.png</Source>
@@ -18,16 +18,6 @@
       <Options>None</Options>
       <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\goomba_sheet.xnb</Output>
       <Time>2015-03-11T17:38:52.92228-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\overworld_theme.mp3</Source>
-      <Name>Audio\overworld_theme</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.xnb</Output>
-      <Extra>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\overworld_theme.wma</Extra>
-      <Time>2015-03-05T17:59:14.0615114-06:00</Time>
     </Item>
     <Item>
       <Source>Images\l1.png</Source>
@@ -75,41 +65,13 @@
       <Time>2015-03-13T23:18:54.0741967-05:00</Time>
     </Item>
     <Item>
-      <Source>Audio\main_theme.mp3</Source>
-      <Name>Audio\main_theme</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\main_theme.xnb</Output>
-      <Extra>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Audio\main_theme.wma</Extra>
-      <Time>2015-03-14T16:21:00.5845638-05:00</Time>
-    </Item>
-    <Item>
       <Source>Fonts\Arial.spritefont</Source>
       <Name>Fonts\Arial</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Fonts\Arial.xnb</Output>
-      <Time>2015-03-14T22:28:30.7688436-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Images\char_spritesheet.png</Source>
-      <Name>Images\char_spritesheet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\char_spritesheet.xnb</Output>
-      <Time>2015-03-16T04:11:39.5559184-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Images\hab1_button.png</Source>
-      <Name>Images\hab1_button</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab1_button.xnb</Output>
-      <Time>2015-03-22T23:05:57.963038-05:00</Time>
+      <Time>2015-03-25T03:12:50.0864211-05:00</Time>
     </Item>
     <Item>
       <Source>Images\play_button.png</Source>
@@ -118,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\play_button.xnb</Output>
-      <Time>2015-03-18T15:53:15.7645239-05:00</Time>
+      <Time>2015-03-25T01:06:56-05:00</Time>
     </Item>
     <Item>
       <Source>Images\quit_button.png</Source>
@@ -127,25 +89,91 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\quit_button.xnb</Output>
-      <Time>2015-03-18T15:53:15.7845385-05:00</Time>
+      <Time>2015-03-25T01:07:38-05:00</Time>
     </Item>
     <Item>
-      <Source>Images\hab2_button.png</Source>
-      <Name>Images\hab2_button</Name>
+      <Source>Images\mage_button.png</Source>
+      <Name>Images\mage_button</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab2_button.xnb</Output>
-      <Time>2015-03-19T14:07:20.8577974-05:00</Time>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\mage_button.xnb</Output>
+      <Time>2015-03-24T20:41:00.1920546-05:00</Time>
     </Item>
     <Item>
-      <Source>Images\hab3_button.png</Source>
-      <Name>Images\hab3_button</Name>
+      <Source>Images\soldier_button.png</Source>
+      <Name>Images\soldier_button</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\hab3_button.xnb</Output>
-      <Time>2015-03-19T14:07:20.8734235-05:00</Time>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\soldier_button.xnb</Output>
+      <Time>2015-03-24T20:41:00.188053-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\skill1_button.png</Source>
+      <Name>Images\skill1_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\skill1_button.xnb</Output>
+      <Time>2015-03-24T20:42:23.0438634-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\skill2_button.png</Source>
+      <Name>Images\skill2_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\skill2_button.xnb</Output>
+      <Time>2015-03-24T20:42:23.0478663-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\skill3_button.png</Source>
+      <Name>Images\skill3_button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\skill3_button.xnb</Output>
+      <Time>2015-03-24T20:42:23.0528682-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\background.png</Source>
+      <Name>Images\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\background.xnb</Output>
+      <Time>2015-03-24T20:43:10.1478565-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\soldier_sheet.png</Source>
+      <Name>Images\soldier_sheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\soldier_sheet.xnb</Output>
+      <Time>2015-03-16T04:11:39.5559184-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\mage_sheet.png</Source>
+      <Name>Images\mage_sheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\mage_sheet.xnb</Output>
+      <Time>2015-03-24T23:50:29.7815831-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\bowser_sheet.png</Source>
+      <Name>Images\bowser_sheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 255, 0, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\LuísAntônio\Documents\GitHub\cs567\EndlessQuest\EndlessQuest\EndlessQuest\bin\x86\Debug\Content\Images\bowser_sheet.xnb</Output>
+      <Time>2015-03-25T02:45:08.369448-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
