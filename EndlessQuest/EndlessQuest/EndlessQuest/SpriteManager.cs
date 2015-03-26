@@ -17,8 +17,21 @@ namespace EndlessQuest
     {
         public bool collisionHappened = false;
         public bool isEnemyAlive = true;
+        public bool isGameOver = false;
+
+        private bool usedNormalAttack = false;
+        private bool usedChargeAttack = false;
+        private bool usedSacrificeAttack = false;
+        
+        private bool usedFireAttack = false;
+        private bool usedWaterAttack = false;
+        private bool usedNatureAttack = false;
+
+        private bool isLevelUp = false;
+
         public Vector2 currentCollisionPosition;
         public Vector2 currentSpeed;
+
         public int index;
         public int charType;
         public int time = 0;
@@ -26,6 +39,8 @@ namespace EndlessQuest
         public SpriteFont Font { get; set; }
         private Vector2 healthPointsPos = new Vector2(20, 10);
         private Vector2 magicPointsPos = new Vector2(20, 30);
+        private Vector2 expPointsPos = new Vector2(20, 50);
+        private Vector2 levelPos = new Vector2(20, 70);
                       
         //SpriteBatch for drawing        
         SpriteBatch spriteBatch;        
@@ -33,6 +48,13 @@ namespace EndlessQuest
         List<EnemySprite> spriteList = new List<EnemySprite>();
 
         EnemySprite boss;
+
+        Sprite normal;
+        Sprite charge;
+        Sprite sacrifice;        
+        Sprite fire;
+        Sprite water;
+        Sprite nature;
 
         //A sprite for the player and a list of automated sprites
         public Player GetPlayer
@@ -72,6 +94,12 @@ namespace EndlessQuest
             set { isEnemyAlive = value; }
         }
 
+        public bool GetGameOver
+        {
+            get { return isGameOver; }
+            set { isGameOver = value; }
+        }
+
         float timer = 10;         //Initialize a 10 second timer
         const float TIMER = 10;
         
@@ -89,6 +117,9 @@ namespace EndlessQuest
 
             return rnd;
         }
+
+
+        /**************************************************************************************/
             
         protected override void LoadContent()
         {
@@ -110,23 +141,53 @@ namespace EndlessQuest
             }            
             
             //Load a random number of different enemy sprites in random positions
-            for (int i = 0; i < RandomNumber(3, 10); i++)
+            for (int i = 0; i < RandomNumber(3, 9); i++)
             {
-                randomValue = RandomNumber(200, 750);
+                randomValue = RandomNumber(200, 700);
                 spriteList.Insert(i, new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(randomValue, 475),
-                new Point(50, 30), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));                
+                new Point(50, 28), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));                
             }
 
-            boss = new EnemySprite(Game.Content.Load<Texture2D>(@"Images/bowser_sheet"), new Vector2(3000, 360),
-                new Point(58, 60), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision");
+            boss = new EnemySprite(Game.Content.Load<Texture2D>(@"Images/bowser_sheet"), new Vector2(3000, 460),
+                new Point(48, 32), 0, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision");
+
+            // Load sprites for the attacks
+            normal = new Attacks(Game.Content.Load<Texture2D>(@"Images/normal"),
+                new Vector2(10, 450), new Point(30, 55), 0, new Point(0, 0), new Point(4, 1), new Vector2(0f, 0f));
+            
+            charge = new Attacks(Game.Content.Load<Texture2D>(@"Images/charge"),
+                new Vector2(10, 450), new Point(30, 60), 0, new Point(0, 0), new Point(4, 1), new Vector2(0f, 0f));
+            
+            sacrifice = new Attacks(Game.Content.Load<Texture2D>(@"Images/blood"),
+                new Vector2(10, 450), new Point(30, 50), 0, new Point(0, 0), new Point(8, 1), new Vector2(0f, 0f));
+            
+            fire = new Attacks(Game.Content.Load<Texture2D>(@"Images/fire"),            
+                new Vector2(10, 450), new Point(30, 40), 0, new Point(0, 0), new Point(5, 1), new Vector2(0f, 0f));
+
+            water = new Attacks(Game.Content.Load<Texture2D>(@"Images/water"),
+                new Vector2(10, 450), new Point(30, 40), 0, new Point(0, 0), new Point(4, 1), new Vector2(0f, 0f));
+
+            nature = new Attacks(Game.Content.Load<Texture2D>(@"Images/fire"),
+                new Vector2(10, 450), new Point(50, 60), 0, new Point(0, 0), new Point(4, 1), new Vector2(0f, 0f));
 
                 base.LoadContent();
+
+            foreach(EnemySprite s in spriteList)
+            {
+                currentSpeed = s.GetSpeed;
+                s.GetHealthPoints = 100;
+                s.GetDamagePoints = 10;               
+            }
+
+            boss.GetHealthPoints = 200;
+            boss.GetDamagePoints = 35;
         }
 
         /**************************************************************************************/
-        //Player basic skills
+        //Soldier basic skills
         public void NormalAttack(int number)
         {
+            usedNormalAttack = true;
             if (spriteList[number].GetHealthPoints <= 0)
             {
                 spriteList.RemoveAt(number);
@@ -134,56 +195,65 @@ namespace EndlessQuest
                 collisionHappened = false;              
             }
             else
-                spriteList[number].GetHealthPoints -= player.GetIntelligence;            
+                spriteList[number].GetHealthPoints -= player.GetIntelligence;
+                player.GetExperience += 5;
         }
 
         public void ChargeAttack(int number)
         {
+            usedChargeAttack = true;
             if (spriteList[number].GetHealthPoints <= 0)
             {
-                spriteList.RemoveAt(number);
+                spriteList.RemoveAt(number);                
                 isEnemyAlive = false;
                 collisionHappened = false;
             }
             else
                 spriteList[number].GetHealthPoints -= player.GetDextrexity;
                 player.GetDefense -= 5; //Each attack decreases by 5 the player defense
+                player.GetExperience += 5;
         }
     
         public void SacrificeAttack(int number)
         {
+            usedSacrificeAttack = true;
             if (spriteList[number].GetHealthPoints <= 0)
             {
-                spriteList.RemoveAt(number);
+                spriteList.RemoveAt(number);                
                 isEnemyAlive = false;
                 collisionHappened = false;
             }
             else
                 spriteList[number].GetHealthPoints -= player.GetIntelligence;
                 player.GetVitality -= 5; // Each attack decreases by 5 the player vitality
+                player.GetExperience += 5;
         }
 
-        //Player special skills
+        //Mage special skills
         public void FireAttack(int number)
         {
+            usedFireAttack = true;
+            
             if (spriteList[number].GetHealthPoints <= 0)
             {
-                spriteList.RemoveAt(number);
+                spriteList.RemoveAt(number);                
                 isEnemyAlive = false;
                 collisionHappened = false;
             }
             else if (player.GetMagicPoints > 0)
             {
                 spriteList[number].GetHealthPoints -= 15;
-                player.GetMagicPoints -= 5;                
-            }
+                player.GetMagicPoints -= 5;
+                player.GetExperience += 5;
+            }            
         }
 
         public void WaterAttack(int number)
         {
+            usedWaterAttack = true;
             if (spriteList[number].GetHealthPoints <= 0)
             {
-                spriteList.RemoveAt(number);
+                spriteList.RemoveAt(number);                
                 isEnemyAlive = false;
                 collisionHappened = false;
             }
@@ -191,12 +261,14 @@ namespace EndlessQuest
             {
                 spriteList[number].GetHealthPoints -= 10;
                 player.GetMagicPoints -= 5;
+                player.GetExperience += 5;
             }
                 
         }
         
         public void NatureAttack(int number)
         {
+            usedNatureAttack = true;
             if (spriteList[number].GetHealthPoints <= 0)
             {
                 spriteList.RemoveAt(number);
@@ -207,12 +279,12 @@ namespace EndlessQuest
             {
                 spriteList[number].GetHealthPoints -= 5;
                 player.GetMagicPoints -= 5;
+                player.GetExperience += 5;
             }
         }
         
         /**************************************************************************************/
                 
-        
         public void EnemyHit(int number)
         {
             player.GetHealthPoints -= spriteList[number].GetDamagePoints;
@@ -223,6 +295,8 @@ namespace EndlessQuest
             player.GetHealthPoints -= boss.GetDamagePoints;
         }
 
+        /**************************************************************************************/
+
         public override void Update(GameTime gameTime)
         {
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -231,16 +305,18 @@ namespace EndlessQuest
             //Update player
             player.Update(gameTime, Game.Window.ClientBounds);
 
+            //Update attacks
+            fire.Update(gameTime, Game.Window.ClientBounds);
+
             //Update boss
-            boss.Update(gameTime, Game.Window.ClientBounds); 
-           
-            // Saves current speed of enemy sprites
-            //foreach(EnemySprite w in spriteList)
-            //{
-                //currentSpeed = w.GetSpeed;
-                //System.Console.WriteLine("\n X: " + currentSpeed.X);
-                //System.Console.WriteLine("\n Y: " + currentSpeed.Y);
-           // }
+            boss.Update(gameTime, Game.Window.ClientBounds);          
+
+            if(player.GetExperience >= 100)
+            {
+                player.LevelUp();
+                player.GetExperience = 0;
+                isLevelUp = true;
+            }               
 
             //Update all common enemy sprites
             foreach (EnemySprite s in spriteList)
@@ -248,46 +324,50 @@ namespace EndlessQuest
                 //s.GetSpeed = currentSpeed;
                 s.Update(gameTime, Game.Window.ClientBounds);
 
-                currentSpeed = s.GetSpeed;
-                //System.Console.WriteLine("\n X: " + currentSpeed.X);
-                //System.Console.WriteLine("\n Y: " + currentSpeed.Y);
+                //currentSpeed = s.GetSpeed;                
 
                 //Check for collisions and exit game if there is one
                 if (s.CollisionRect.Intersects(player.CollisionRect) && s.GetHealthPoints >= 0)
                 {
                     collisionHappened = true;
                     currentCollisionPosition = s.GetPosition;
-                    index = spriteList.IndexOf(s); // gets the index of the enemy
-                    //System.Console.WriteLine("I'm inside the collision!");
-                    
+                    index = spriteList.IndexOf(s); // gets the index of the enemy                    
+
                     // Makes enemies stop in front of player
                     s.GetSpeed = new Vector2(0, 0);
-                    
-                    // As well as the stage boss
-                    boss.GetSpeed = new Vector2(0, 0);                   
-                    
+
+                    // As well as the boss
+                    boss.GetSpeed = new Vector2(0, 0);
+
                     // Makes the rest of the enemis stop in their current positions
-                    foreach(EnemySprite t in spriteList)
+                    foreach (EnemySprite t in spriteList)
                     {
-                        t.GetSpeed = new Vector2(0, 0);                         
-                    }               
+                        t.GetSpeed = new Vector2(0, 0);
+                    }
 
                     if (player.GetHealthPoints <= 0)
-                        //Exits game in case player's life reaches zero
-                        Game.Exit();
+                        //Exits game in case player's life reaches zero                        
+                        isGameOver = true;
+
                     // Play collision sound
                     //if (s.collisionCueName != null)
-                        //((Game1)Game).PlayCollisionSound(s.collisionCueName);
+                    //((Game1)Game).PlayCollisionSound(s.collisionCueName);
 
                 }
-
-                //s.GetSpeed = currentSpeed;
+                else
+                {
+                    s.GetSpeed = currentSpeed;
+                    boss.GetSpeed = currentSpeed;
+                }                    
 
                     //Check collision with boss
-                    if (boss.CollisionRect.Intersects(player.CollisionRect))
-                    {
-                        collisionHappened = true;
-                    }                    
+                if (boss.CollisionRect.Intersects(player.CollisionRect))
+                {
+                    collisionHappened = true;
+                    boss.GetSpeed = new Vector2(0, 0);
+                }
+                /*else
+                    boss.GetSpeed = currentSpeed;*/
             }
 
             time = time + 1;
@@ -295,32 +375,88 @@ namespace EndlessQuest
             base.Update(gameTime);
         }
 
+        /**************************************************************************************/
+
         public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);       
 
-            //Draw the player
-            player.Draw(gameTime, spriteBatch);
 
-            boss.Draw(gameTime, spriteBatch);
+            /**************************************************************************************/
+            // Draw attacks
+            if (usedNormalAttack == true)
+            {
+                normal.Draw(gameTime, spriteBatch);
+                usedNormalAttack = false;
+            }
+            if (usedChargeAttack == true)
+            {
+                charge.Draw(gameTime, spriteBatch);
+                usedChargeAttack = false;
+            }
+            if (usedSacrificeAttack == true)
+            {
+                sacrifice.Draw(gameTime, spriteBatch);
+                usedSacrificeAttack = false;
+            }
+            if (usedFireAttack == true)
+            {
+                fire.Draw(gameTime, spriteBatch);
+                usedFireAttack = false;
+            }
+            if (usedWaterAttack == true)
+            {
+                water.Draw(gameTime, spriteBatch);
+                usedWaterAttack = false;
+            }
+            if (usedNatureAttack == true)
+            {
+                nature.Draw(gameTime, spriteBatch);
+                usedNatureAttack = false;
+            }
+            /**************************************************************************************/
 
-            //Draw all sprites
-            foreach (Sprite s in spriteList)
-                s.Draw(gameTime, spriteBatch);
+            if(isLevelUp == true)
+            {
+                spriteBatch.DrawString(Font, "You reached level  " + player.GetLevel, new Vector2(200, 300), Color.Black);  
+                isLevelUp = false;
+            }
 
-            // Draw the Score in the top-left of screen
-            spriteBatch.DrawString(
-                Font,                          // SpriteFont
-                "HP: " + player.GetHealthPoints.ToString(),  // Text
-                healthPointsPos,                      // Position
-                Color.Black);                  // Tint
-            spriteBatch.DrawString(
-                Font,
-                "MP: " + player.GetMagicPoints.ToString(),
-                magicPointsPos,
-                Color.Black);
-            spriteBatch.End();
-            base.Draw(gameTime);
+            /**************************************************************************************/
+
+                //Draw the player
+                player.Draw(gameTime, spriteBatch);
+
+                boss.Draw(gameTime, spriteBatch);
+
+                //Draw all sprites
+                foreach (Sprite s in spriteList)
+                    s.Draw(gameTime, spriteBatch);
+
+                // Draw the Score in the top-left of screen
+                spriteBatch.DrawString(
+                    Font,                          // SpriteFont
+                    "HP: " + player.GetHealthPoints.ToString(),  // Text
+                    healthPointsPos,                      // Position
+                    Color.Black);                  // Tint
+                spriteBatch.DrawString(
+                    Font,
+                    "MP: " + player.GetMagicPoints.ToString(),
+                    magicPointsPos,
+                    Color.Black);
+                spriteBatch.DrawString(
+                    Font,
+                    "EXP: " + player.GetExperience.ToString(),
+                    expPointsPos,
+                    Color.Black);                
+                spriteBatch.DrawString(
+                       Font,
+                       "LEVEL: " + player.GetLevel.ToString(),
+                       levelPos,
+                       Color.Black);
+                spriteBatch.End();   
+                base.Draw(gameTime);
+           // }
         }
     }
 }

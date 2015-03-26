@@ -90,6 +90,17 @@ namespace EndlessQuest
             get { return magicPoints; }
             set { magicPoints = value; }
         }
+
+        public void LevelUp()
+        {
+            vitality += 5;
+            intelligence += 5;
+            agility += 5;
+            dextrexity += 5;
+            strength += 5;
+            defense += 5;
+            level += 1;
+        }
              
         //Get direction of sprite based on layer input and speed
         public override Vector2 Direction

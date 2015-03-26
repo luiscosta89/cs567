@@ -20,15 +20,9 @@ namespace EndlessQuest
             get { return speed; }            
         }
 
-        public int healthPoints = 100;
-        public int damagePoints = 2;
+        public int healthPoints;
+        public int damagePoints;
         public bool isAlive = true;
-
-        //public Vector2 GetSpeed
-        //{
-        //   get { return speed; }
-        //   set { speed = value; }
-        //}
 
         public bool isAliveValue
         {
@@ -45,6 +39,7 @@ namespace EndlessQuest
         public int GetDamagePoints
         {
             get { return damagePoints; }
+            set { damagePoints = value;}
         }
 
         public EnemySprite(Texture2D textureImage, Vector2 position, Point frameSize,

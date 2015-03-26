@@ -26,7 +26,7 @@ namespace EndlessQuest
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public Camera camera;       
+              
         public Random rnd { get; private set; }
 
         private TimeSpan intervalBetweenAttack;
@@ -147,16 +147,7 @@ namespace EndlessQuest
                 soundBank.PlayCue("NatureAttack");
         }
 
-        /**************************************************************************************/
-
-        //private int RandomNumber(int min, int max)
-        //{
-        //    Random rndNum = new Random(int.Parse(Guid.NewGuid().ToString().Substring(0, 8), System.Globalization.NumberStyles.HexNumber));
-
-        //    int rnd = rndNum.Next(min, max);
-
-        //    return rnd;
-        //}        
+        /**************************************************************************************/                   
               
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -167,9 +158,7 @@ namespace EndlessQuest
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            spriteManager = new SpriteManager(this);
-
-            camera = new Camera(GraphicsDevice.Viewport);            
+            spriteManager = new SpriteManager(this);                      
 
             // starting x and y locations to stack buttons 
             // vertically in the middle of the screen
@@ -193,16 +182,17 @@ namespace EndlessQuest
             }
                         
             //For selection buttons
+                                
                 button_state[SOLDIER_BUTTON_INDEX] = BState.UP;
                 button_color[SOLDIER_BUTTON_INDEX] = Color.White;
                 button_timer[SOLDIER_BUTTON_INDEX] = 0.0;
-                button_rectangle[SOLDIER_BUTTON_INDEX] = new Rectangle(x2, y2, BUTTON_WIDTH, BUTTON_HEIGHT);
+                button_rectangle[SOLDIER_BUTTON_INDEX] = new Rectangle(x2, y2, BUTTON_WIDTH, BUTTON_HEIGHT+30);
                 y2 += BUTTON_HEIGHT;
 
                 button_state[MAGE_BUTTON_INDEX] = BState.UP;
                 button_color[MAGE_BUTTON_INDEX] = Color.White;
                 button_timer[MAGE_BUTTON_INDEX] = 0.0;
-                button_rectangle[MAGE_BUTTON_INDEX] = new Rectangle(x2, y2, BUTTON_WIDTH, BUTTON_HEIGHT);
+                button_rectangle[MAGE_BUTTON_INDEX] = new Rectangle(x2, y2, BUTTON_WIDTH, BUTTON_HEIGHT+30);
                 y2 += BUTTON_HEIGHT;
             
 
@@ -223,9 +213,10 @@ namespace EndlessQuest
             
             this.layers = new List<ParallaxLayer>();           
             
+                
             ParallaxLayer firstLayer = new ParallaxLayer(firstBackgroundSpeed * secondBackgroundSpeed, 0);
-            ParallaxLayer secondLayer = new ParallaxLayer(1, 1);
-            ParallaxLayer thirdLayer = new ParallaxLayer(1, 1);
+            ParallaxLayer secondLayer = new ParallaxLayer(20, 0);
+            ParallaxLayer thirdLayer = new ParallaxLayer(20, 0);
             ParallaxLayer fourthLayer = new ParallaxLayer(60, 0);
             ParallaxLayer fifthLayer = new ParallaxLayer(10, 0);
 
@@ -262,13 +253,13 @@ namespace EndlessQuest
 
             /**************************************************************************************/
             
-            button_texture[PLAY_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images/play_button");
-            button_texture[QUIT_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images/quit_button");
-            button_texture[SOLDIER_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images/soldier_button");
-            button_texture[MAGE_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images/mage_button");
-            button_texture[SKILL1_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images/skill1_button");
-            button_texture[SKILL2_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images/skill2_button");
-            button_texture[SKILL3_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images/skill3_button");
+            button_texture[PLAY_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images\play_button");
+            button_texture[QUIT_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images\quit_button");
+            button_texture[SOLDIER_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images\soldier_button");
+            button_texture[MAGE_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images\mage_button");
+            button_texture[SKILL1_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images\skill1_button");
+            button_texture[SKILL2_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images\skill2_button");
+            button_texture[SKILL3_BUTTON_INDEX] = Content.Load<Texture2D>(@"Images\skill3_button");
             
            /**************************************************************************************/
             
@@ -288,17 +279,16 @@ namespace EndlessQuest
                         currentSong.Play();
                         break;
                     }
-            }
-                     
+            }                     
 
             /**************************************************************************************/
 
             // Load the layers
-            this.layers[0].LoadContent(Content, @"Images/l1");
-            this.layers[1].LoadContent(Content, @"Images/l2");
-            this.layers[2].LoadContent(Content, @"Images/l3");
-            this.layers[3].LoadContent(Content, @"Images/l4");
-            this.layers[4].LoadContent(Content, @"Images/l5");
+            this.layers[0].LoadContent(Content, @"Images\l1");
+            this.layers[1].LoadContent(Content, @"Images\l2");
+            this.layers[2].LoadContent(Content, @"Images\l3");
+            this.layers[3].LoadContent(Content, @"Images\l4");
+            this.layers[4].LoadContent(Content, @"Images\l5");
 
             /**************************************************************************************/
 
@@ -312,13 +302,9 @@ namespace EndlessQuest
             graphics.ApplyChanges();
             IsMouseVisible = true;
 
-            /**************************************************************************************/
-
+            /**************************************************************************************/           
             
-            
-        }
-
-        
+        }       
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -326,8 +312,7 @@ namespace EndlessQuest
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
-            
+            // TODO: Unload any non ContentManager content here            
         }
 
         /// <summary>
@@ -356,6 +341,14 @@ namespace EndlessQuest
             foreach (ParallaxLayer layer in this.layers)
             {
                 layer.Update(gameTime, this);
+                if (spriteManager.GetCollision == true)
+                {
+                    firstBackgroundSpeed = 0;
+                }
+                else
+                {
+                    firstBackgroundSpeed = 100;
+                }
             }          
             
             /**************************************************************************************/
@@ -373,9 +366,7 @@ namespace EndlessQuest
                     lastTimeAttack = gameTime.TotalGameTime;                    
                 }           
                 
-            }
-
-            //spriteManager.GetCollision = false;
+            }            
                    
             /**************************************************************************************/
 
@@ -391,10 +382,7 @@ namespace EndlessQuest
             prev_mpressed = mpressed;
             mpressed = mouse_state.LeftButton == ButtonState.Pressed;
 
-            update_buttons();
-            //spriteManager.GetCollision = false;
-
-            camera.Update(gameTime, this);
+            update_buttons();                      
 
             base.Update(gameTime);
         }
@@ -499,8 +487,7 @@ namespace EndlessQuest
                     
                         //Stops current music and plays level music
                         CurrentGameState = GameState.Selection;
-                        Settings.musicVolume = 1.0f;
-                        System.Console.WriteLine(PLAY_BUTTON_INDEX);
+                        Settings.musicVolume = 1.0f;                        
                         currentSong.Stop(AudioStopOptions.AsAuthored);
                         currentSong = soundBank.GetCue("Selection");
                         currentSong.Play();
@@ -513,21 +500,19 @@ namespace EndlessQuest
                     this.Exit();
                     break;
                 case SKILL1_BUTTON_INDEX:
-                    if(spriteManager.GetCollision && spriteManager.GetCharType == 1)
+                    if (spriteManager.GetCollision && spriteManager.GetCharType == 1)
                     {
                         spriteManager.NormalAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        spriteManager.GetPlayer.GetExperience += 5;
                         PlaySkill1Sounds();
                         spriteManager.GetCollision = false;
-                        System.Console.WriteLine(spriteManager.GetCollision);
                     }
                     else if (spriteManager.GetCollision && spriteManager.GetCharType == 2)
                     {
                         spriteManager.FireAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        spriteManager.GetPlayer.GetExperience += 5;
                         PlaySkill1Sounds();
+                        spriteManager.GetCollision = false;
                     }                    
                     
                     break;
@@ -535,16 +520,16 @@ namespace EndlessQuest
                     if (spriteManager.GetCollision && spriteManager.GetCharType == 1)
                     {
                         spriteManager.ChargeAttack(spriteManager.GetIndex);
-                        //After each attack, the player earns experience points
-                        spriteManager.GetPlayer.GetExperience += 5;
+                        //After each attack, the player earns experience points                        
                         PlaySkill2Sounds();
+                        spriteManager.GetCollision = false;
                     }
                     else if (spriteManager.GetCollision && spriteManager.GetCharType == 2)
                     {
                         spriteManager.WaterAttack(spriteManager.GetIndex);
-                        //After each attack, the player earns experience points
-                        spriteManager.GetPlayer.GetExperience += 5;
+                        //After each attack, the player earns experience points                        
                         PlaySkill2Sounds();
+                        spriteManager.GetCollision = false;
                     }
                     break;
                 case SKILL3_BUTTON_INDEX:
@@ -552,15 +537,15 @@ namespace EndlessQuest
                     {
                         spriteManager.SacrificeAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        spriteManager.GetPlayer.GetExperience += 5;
                         PlaySkill3Sounds();
+                        spriteManager.GetCollision = false;
                     }
                     else if (spriteManager.GetCollision && spriteManager.GetCharType == 2)
                     {
                         spriteManager.WaterAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        spriteManager.GetPlayer.GetExperience += 5;
                         PlaySkill3Sounds();
+                        spriteManager.GetCollision = false;
                     }
                     break;
                 case SOLDIER_BUTTON_INDEX:
@@ -578,8 +563,7 @@ namespace EndlessQuest
                 case MAGE_BUTTON_INDEX:
                     {
                         spriteManager.GetCharType = 2; // 2 for selecting Mage
-                        CurrentGameState = GameState.Playing;
-                        System.Console.WriteLine(PLAY_BUTTON_INDEX);
+                        CurrentGameState = GameState.Playing;                        
                         currentSong.Stop(AudioStopOptions.AsAuthored);
                         currentSong = soundBank.GetCue("Levels");
                         currentSong.Play();
@@ -602,7 +586,7 @@ namespace EndlessQuest
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
+            spriteBatch.Begin();
                
 
             switch (CurrentGameState)
@@ -613,7 +597,7 @@ namespace EndlessQuest
                         spriteBatch.Draw(button_texture[PLAY_BUTTON_INDEX], button_rectangle[PLAY_BUTTON_INDEX], button_color[PLAY_BUTTON_INDEX]);
                         spriteBatch.Draw(button_texture[QUIT_BUTTON_INDEX], button_rectangle[QUIT_BUTTON_INDEX], button_color[QUIT_BUTTON_INDEX]);
                         spriteBatch.DrawString(spriteManager.Font, "Game coded by Luis Antonio Costa ", new Vector2(220, 60), Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "Artwork by Atilla Galio ", new Vector2(260, 80), Color.Black);    
+                        spriteBatch.DrawString(spriteManager.Font, "Artwork by Atilla Gallio ", new Vector2(260, 80), Color.Black);    
                         break;                        
                     }
                 
@@ -622,20 +606,33 @@ namespace EndlessQuest
                         spriteBatch.Draw(Content.Load<Texture2D>(@"Images\background"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                         spriteBatch.Draw(button_texture[SOLDIER_BUTTON_INDEX], button_rectangle[SOLDIER_BUTTON_INDEX], button_color[SOLDIER_BUTTON_INDEX]);
                         spriteBatch.Draw(button_texture[MAGE_BUTTON_INDEX], button_rectangle[MAGE_BUTTON_INDEX], button_color[MAGE_BUTTON_INDEX]);
-                        spriteBatch.DrawString(spriteManager.Font, "Choose your character class ", new Vector2(250, 50) , Color.Black);          
+                        spriteBatch.DrawString(spriteManager.Font, "Choose your character class ", new Vector2(250, 50) , Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "Instructions to play: ", new Vector2(280, 380), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "1 - Your character will run on enemies, be prepared to fight! ", new Vector2(50, 420), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "2 - Select one skill of your character to attack your enemy fast! ", new Vector2(50, 440), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "3 - Some skills from the soldier cost Health Points! ", new Vector2(50, 460), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "4 - All the skills from the mage cost Magic Points! ", new Vector2(50, 480), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "5 - After earning 100 Experience Points you will increase level! ", new Vector2(50, 500), Color.Black);
                         break;
                     }
 
                case GameState.Playing:
                     {
-                        foreach (ParallaxLayer layer in this.layers)
-                        {
-                            layer.Draw(spriteBatch);
-                        }
-                        // Draw buttons
-                        spriteBatch.Draw(button_texture[SKILL1_BUTTON_INDEX], button_rectangle[SKILL1_BUTTON_INDEX], button_color[SKILL1_BUTTON_INDEX]);
-                        spriteBatch.Draw(button_texture[SKILL2_BUTTON_INDEX], button_rectangle[SKILL2_BUTTON_INDEX], button_color[SKILL2_BUTTON_INDEX]);
-                        spriteBatch.Draw(button_texture[SKILL3_BUTTON_INDEX], button_rectangle[SKILL3_BUTTON_INDEX], button_color[SKILL3_BUTTON_INDEX]);
+                        //if (spriteManager.GetGameOver == true)
+                        //{
+                        //    spriteBatch.Draw(Content.Load<Texture2D>(@"Images\background"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                        //}
+                        //else
+                        //{
+                            foreach (ParallaxLayer layer in this.layers)
+                            {
+                                layer.Draw(spriteBatch);
+                            }
+                            // Draw buttons
+                            spriteBatch.Draw(button_texture[SKILL1_BUTTON_INDEX], button_rectangle[SKILL1_BUTTON_INDEX], button_color[SKILL1_BUTTON_INDEX]);
+                            spriteBatch.Draw(button_texture[SKILL2_BUTTON_INDEX], button_rectangle[SKILL2_BUTTON_INDEX], button_color[SKILL2_BUTTON_INDEX]);
+                            spriteBatch.Draw(button_texture[SKILL3_BUTTON_INDEX], button_rectangle[SKILL3_BUTTON_INDEX], button_color[SKILL3_BUTTON_INDEX]);                            
+                        //}
                         break;
                     }
             }

@@ -44,7 +44,6 @@ namespace EndlessQuest
 
             //Use speed from player but this update must be after the collision detection
 
-            //this.position.X = game.spriteManager.GetPlayer.GetSpeed.X * deltaTime;
             this.position.X -= this.speed.X * deltaTime;
             this.position.X = this.position.X % this.image.Width;            
         }

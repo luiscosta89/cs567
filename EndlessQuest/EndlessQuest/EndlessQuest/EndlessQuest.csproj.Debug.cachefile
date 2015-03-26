@@ -1,11 +1,11 @@
-Content\Images\menu.xnb
-Content\Images\goomba_sheet.xnb
 Content\Images\l1.xnb
 Content\Images\l2.xnb
 Content\Images\l3.xnb
 Content\Images\l4.xnb
 Content\Images\l5.xnb
-Content\Fonts\Arial.xnb
+Content\Images\goomba_sheet.xnb
+Content\Images\mage_sheet.xnb
+Content\Images\menu.xnb
 Content\Images\play_button.xnb
 Content\Images\quit_button.xnb
 Content\Images\mage_button.xnb
@@ -15,8 +15,14 @@ Content\Images\skill2_button.xnb
 Content\Images\skill3_button.xnb
 Content\Images\background.xnb
 Content\Images\soldier_sheet.xnb
-Content\Images\mage_sheet.xnb
+Content\Images\fire.xnb
+Content\Images\water.xnb
+Content\Images\nature.xnb
+Content\Images\blood.xnb
+Content\Images\charge.xnb
+Content\Images\normal.xnb
 Content\Images\bowser_sheet.xnb
+Content\Fonts\Arial.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb
