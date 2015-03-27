@@ -556,6 +556,7 @@ namespace EndlessQuest
                 case MAGE_BUTTON_INDEX:
                     {
                         spriteManager.GetCharType = 2; // 2 for selecting Mage
+                        CurrentGameState = GameState.Playing;
                         
                         currentSong.Stop(AudioStopOptions.AsAuthored);
                         currentSong = soundBank.GetCue("Levels");
