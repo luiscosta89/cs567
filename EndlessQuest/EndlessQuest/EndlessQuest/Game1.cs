@@ -33,7 +33,7 @@ namespace EndlessQuest
         private TimeSpan lastTimeAttack;
 
         // Music volume.
-        float musicVolume = 1.0f;
+        //float musicVolume = 1.0f;
 
         /**************************************************************************************/
         // Global variables for buttons
@@ -338,22 +338,17 @@ namespace EndlessQuest
             /**************************************************************************************/                          
                        
             // Update layers
-            foreach (ParallaxLayer layer in this.layers)
+            if (spriteManager.GetCollision == false)
             {
-                layer.Update(gameTime, this);
-                if (spriteManager.GetCollision == true)
+                foreach (ParallaxLayer layer in this.layers)
                 {
-                    firstBackgroundSpeed = 0;
+                    layer.Update(gameTime, this);
                 }
-                else
-                {
-                    firstBackgroundSpeed = 100;
-                }
-            }          
+            }
             
             /**************************************************************************************/
 
-            // Does the battle logic to stop player movemente
+            // Does the battle logic with normal enemies
             if (spriteManager.GetCollision == true)
             {
                 // Enemy strikes player while the target has health and the enemy is alive
@@ -361,12 +356,12 @@ namespace EndlessQuest
                    (lastTimeAttack + intervalBetweenAttack < gameTime.TotalGameTime) &&
                     spriteManager.GetEnemyAlive)
                 {
-                    spriteManager.EnemyHit(spriteManager.GetIndex);
-                    PlayAttackSound();
-                    lastTimeAttack = gameTime.TotalGameTime;                    
-                }           
-                
-            }            
+                        spriteManager.EnemyHit(spriteManager.GetIndex);
+                        PlayAttackSound();
+                        lastTimeAttack = gameTime.TotalGameTime;                   
+                    }
+            }         
+                        
                    
             /**************************************************************************************/
 
@@ -504,71 +499,70 @@ namespace EndlessQuest
                     {
                         spriteManager.NormalAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        PlaySkill1Sounds();
-                        spriteManager.GetCollision = false;
+                        PlaySkill1Sounds();                        
                     }
-                    else if (spriteManager.GetCollision && spriteManager.GetCharType == 2)
+                    else if (spriteManager.GetCollision && spriteManager.GetCharType == 2 && spriteManager.GetPlayer.GetMagicPoints > 0)
                     {
                         spriteManager.FireAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        PlaySkill1Sounds();
-                        spriteManager.GetCollision = false;
-                    }                    
-                    
+                        PlaySkill1Sounds();                        
+                    }
+                    spriteManager.GetCollision = false;                       
                     break;
                 case SKILL2_BUTTON_INDEX:
                     if (spriteManager.GetCollision && spriteManager.GetCharType == 1)
                     {
                         spriteManager.ChargeAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points                        
-                        PlaySkill2Sounds();
-                        spriteManager.GetCollision = false;
+                        PlaySkill2Sounds();                        
                     }
-                    else if (spriteManager.GetCollision && spriteManager.GetCharType == 2)
+                    else if (spriteManager.GetCollision && spriteManager.GetCharType == 2 && spriteManager.GetPlayer.GetMagicPoints > 0)
                     {
                         spriteManager.WaterAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points                        
-                        PlaySkill2Sounds();
-                        spriteManager.GetCollision = false;
+                        PlaySkill2Sounds();                        
                     }
+                    spriteManager.GetCollision = false;               
                     break;
                 case SKILL3_BUTTON_INDEX:
                     if (spriteManager.GetCollision && spriteManager.GetCharType == 1)
                     {
                         spriteManager.SacrificeAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        PlaySkill3Sounds();
-                        spriteManager.GetCollision = false;
+                        PlaySkill3Sounds();                       
                     }
-                    else if (spriteManager.GetCollision && spriteManager.GetCharType == 2)
+                    else if (spriteManager.GetCollision && spriteManager.GetCharType == 2 && spriteManager.GetPlayer.GetMagicPoints > 0)
                     {
-                        spriteManager.WaterAttack(spriteManager.GetIndex);
+                        spriteManager.NatureAttack(spriteManager.GetIndex);
                         //After each attack, the player earns experience points
-                        PlaySkill3Sounds();
-                        spriteManager.GetCollision = false;
+                        PlaySkill3Sounds();                        
                     }
+                    spriteManager.GetCollision = false;                    
                     break;
                 case SOLDIER_BUTTON_INDEX:
                     {
                         spriteManager.GetCharType = 1; // 1 for selecting Soldier
                         CurrentGameState = GameState.Playing;
+                                             
                         currentSong.Stop(AudioStopOptions.AsAuthored);
                         currentSong = soundBank.GetCue("Levels");
                         currentSong.Play();
-                        Settings.musicVolume = 1.0f;                        
-                        LoadSprites();                       
+                        Settings.musicVolume = 1.0f;
+                        
+                        LoadSprites();                                                              
 
                         break;
                     }
                 case MAGE_BUTTON_INDEX:
                     {
                         spriteManager.GetCharType = 2; // 2 for selecting Mage
-                        CurrentGameState = GameState.Playing;                        
+                        
                         currentSong.Stop(AudioStopOptions.AsAuthored);
                         currentSong = soundBank.GetCue("Levels");
                         currentSong.Play();
-                        Settings.musicVolume = 1.0f;                        
-                        LoadSprites();                       
+                        Settings.musicVolume = 1.0f;
+                        
+                        LoadSprites();                                                  
 
                         break;
                     }
@@ -596,8 +590,9 @@ namespace EndlessQuest
                         spriteBatch.Draw(Content.Load<Texture2D>(@"Images\menu"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                         spriteBatch.Draw(button_texture[PLAY_BUTTON_INDEX], button_rectangle[PLAY_BUTTON_INDEX], button_color[PLAY_BUTTON_INDEX]);
                         spriteBatch.Draw(button_texture[QUIT_BUTTON_INDEX], button_rectangle[QUIT_BUTTON_INDEX], button_color[QUIT_BUTTON_INDEX]);
-                        spriteBatch.DrawString(spriteManager.Font, "Game coded by Luis Antonio Costa ", new Vector2(220, 60), Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "Artwork by Atilla Gallio ", new Vector2(260, 80), Color.Black);    
+                        spriteBatch.DrawString(spriteManager.Font, "Game coded by Luis Antonio Costa", new Vector2(220, 60), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "Artwork by Atilla Gallio", new Vector2(260, 80), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "Version 1.0", new Vector2(650, 550), Color.Black); 
                         break;                        
                     }
                 
@@ -606,24 +601,22 @@ namespace EndlessQuest
                         spriteBatch.Draw(Content.Load<Texture2D>(@"Images\background"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                         spriteBatch.Draw(button_texture[SOLDIER_BUTTON_INDEX], button_rectangle[SOLDIER_BUTTON_INDEX], button_color[SOLDIER_BUTTON_INDEX]);
                         spriteBatch.Draw(button_texture[MAGE_BUTTON_INDEX], button_rectangle[MAGE_BUTTON_INDEX], button_color[MAGE_BUTTON_INDEX]);
-                        spriteBatch.DrawString(spriteManager.Font, "Choose your character class ", new Vector2(250, 50) , Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "Instructions to play: ", new Vector2(280, 380), Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "1 - Your character will run on enemies, be prepared to fight! ", new Vector2(50, 420), Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "2 - Select one skill of your character to attack your enemy fast! ", new Vector2(50, 440), Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "3 - Some skills from the soldier cost Health Points! ", new Vector2(50, 460), Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "4 - All the skills from the mage cost Magic Points! ", new Vector2(50, 480), Color.Black);
-                        spriteBatch.DrawString(spriteManager.Font, "5 - After earning 100 Experience Points you will increase level! ", new Vector2(50, 500), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "Choose your character class", new Vector2(250, 50), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "Instructions to play:", new Vector2(280, 360), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "1 - Your character will run on enemies, be prepared to fight!", new Vector2(50, 400), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "2 - Select one skill of your character to attack your enemy fast!", new Vector2(50, 420), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "3 - Some skills from the soldier cost Health Points!", new Vector2(50, 440), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "4 - All the skills from the mage cost Magic Points!", new Vector2(50, 460), Color.Black);
+                        spriteBatch.DrawString(spriteManager.Font, "5 - After earning 100 Experience Points you will increase level!", new Vector2(50, 480), Color.Black);
+                        
                         break;
                     }
 
                case GameState.Playing:
-                    {
-                        //if (spriteManager.GetGameOver == true)
-                        //{
-                        //    spriteBatch.Draw(Content.Load<Texture2D>(@"Images\background"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-                        //}
-                        //else
-                        //{
+                    {                      
+
+                        if (spriteManager.isGameOver == false)
+                        {
                             foreach (ParallaxLayer layer in this.layers)
                             {
                                 layer.Draw(spriteBatch);
@@ -631,8 +624,16 @@ namespace EndlessQuest
                             // Draw buttons
                             spriteBatch.Draw(button_texture[SKILL1_BUTTON_INDEX], button_rectangle[SKILL1_BUTTON_INDEX], button_color[SKILL1_BUTTON_INDEX]);
                             spriteBatch.Draw(button_texture[SKILL2_BUTTON_INDEX], button_rectangle[SKILL2_BUTTON_INDEX], button_color[SKILL2_BUTTON_INDEX]);
-                            spriteBatch.Draw(button_texture[SKILL3_BUTTON_INDEX], button_rectangle[SKILL3_BUTTON_INDEX], button_color[SKILL3_BUTTON_INDEX]);                            
-                        //}
+                            spriteBatch.Draw(button_texture[SKILL3_BUTTON_INDEX], button_rectangle[SKILL3_BUTTON_INDEX], button_color[SKILL3_BUTTON_INDEX]);
+                            
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(Content.Load<Texture2D>(@"Images\game_over"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                            spriteBatch.DrawString(spriteManager.Font, "GAME OVER!", new Vector2(350, 200), Color.Red);
+                            spriteBatch.DrawString(spriteManager.Font, "The night has and your quest is over...", new Vector2(200, 250), Color.White);
+                            currentSong.Stop(AudioStopOptions.AsAuthored);                           
+                        }
                         break;
                     }
             }

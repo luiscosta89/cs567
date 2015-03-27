@@ -15,7 +15,7 @@ namespace EndlessQuest
 {
     public class SpriteManager : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        public bool collisionHappened = false;
+        public bool collisionHappened = false;        
         public bool isEnemyAlive = true;
         public bool isGameOver = false;
 
@@ -47,7 +47,7 @@ namespace EndlessQuest
                 
         List<EnemySprite> spriteList = new List<EnemySprite>();
 
-        EnemySprite boss;
+        //EnemySprite boss;
 
         Sprite normal;
         Sprite charge;
@@ -69,7 +69,7 @@ namespace EndlessQuest
         {
             get { return collisionHappened;}
             set { collisionHappened = value; }
-        }
+        }      
 
         public Vector2 GetCurrentCollisionPosition
         {
@@ -124,7 +124,7 @@ namespace EndlessQuest
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            int randomValue;           
+            int randomValue;            
                         
             // Load Soldier Sprite
             if(charType == 1)
@@ -146,10 +146,7 @@ namespace EndlessQuest
                 randomValue = RandomNumber(200, 700);
                 spriteList.Insert(i, new EnemySprite(Game.Content.Load<Texture2D>(@"Images/goomba_sheet"), new Vector2(randomValue, 475),
                 new Point(50, 28), 10, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));                
-            }
-
-            boss = new EnemySprite(Game.Content.Load<Texture2D>(@"Images/bowser_sheet"), new Vector2(3000, 460),
-                new Point(48, 32), 0, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision");
+            }            
 
             // Load sprites for the attacks
             normal = new Attacks(Game.Content.Load<Texture2D>(@"Images/normal"),
@@ -179,8 +176,18 @@ namespace EndlessQuest
                 s.GetDamagePoints = 10;               
             }
 
-            boss.GetHealthPoints = 200;
-            boss.GetDamagePoints = 35;
+            spriteList.Add(new EnemySprite(Game.Content.Load<Texture2D>(@"Images/bowser_sheet"), new Vector2(3000, 460),
+                new Point(48, 32), 0, new Point(0, 0), new Point(4, 1), new Vector2(1, 1), "enemy_collision"));
+
+            // Add boss sprite            
+            for (int i = 0; i <= spriteList.Count - 1; i++)
+            {
+                if(i == spriteList.Count - 1)
+                {
+                    spriteList[i].GetHealthPoints = 200;
+                    spriteList[i].GetDamagePoints = 35;
+                }
+            }           
         }
 
         /**************************************************************************************/
@@ -192,11 +199,14 @@ namespace EndlessQuest
             {
                 spriteList.RemoveAt(number);
                 isEnemyAlive = false;
-                collisionHappened = false;              
+                collisionHappened = false;
             }
             else
+            {
                 spriteList[number].GetHealthPoints -= player.GetIntelligence;
                 player.GetExperience += 5;
+            }
+            isEnemyAlive = true;
         }
 
         public void ChargeAttack(int number)
@@ -204,14 +214,18 @@ namespace EndlessQuest
             usedChargeAttack = true;
             if (spriteList[number].GetHealthPoints <= 0)
             {
-                spriteList.RemoveAt(number);                
+                spriteList.RemoveAt(number);
                 isEnemyAlive = false;
                 collisionHappened = false;
             }
             else
+            {
                 spriteList[number].GetHealthPoints -= player.GetDextrexity;
                 player.GetDefense -= 5; //Each attack decreases by 5 the player defense
                 player.GetExperience += 5;
+            }
+            isEnemyAlive = true;
+        
         }
     
         public void SacrificeAttack(int number)
@@ -219,21 +233,23 @@ namespace EndlessQuest
             usedSacrificeAttack = true;
             if (spriteList[number].GetHealthPoints <= 0)
             {
-                spriteList.RemoveAt(number);                
+                spriteList.RemoveAt(number);
                 isEnemyAlive = false;
                 collisionHappened = false;
             }
             else
+            {
                 spriteList[number].GetHealthPoints -= player.GetIntelligence;
                 player.GetVitality -= 5; // Each attack decreases by 5 the player vitality
                 player.GetExperience += 5;
+            }
+            isEnemyAlive = true;
         }
 
         //Mage special skills
         public void FireAttack(int number)
         {
-            usedFireAttack = true;
-            
+            usedFireAttack = true;            
             if (spriteList[number].GetHealthPoints <= 0)
             {
                 spriteList.RemoveAt(number);                
@@ -245,7 +261,8 @@ namespace EndlessQuest
                 spriteList[number].GetHealthPoints -= 15;
                 player.GetMagicPoints -= 5;
                 player.GetExperience += 5;
-            }            
+            }
+            isEnemyAlive = true;
         }
 
         public void WaterAttack(int number)
@@ -263,6 +280,7 @@ namespace EndlessQuest
                 player.GetMagicPoints -= 5;
                 player.GetExperience += 5;
             }
+            isEnemyAlive = true;
                 
         }
         
@@ -281,6 +299,7 @@ namespace EndlessQuest
                 player.GetMagicPoints -= 5;
                 player.GetExperience += 5;
             }
+            isEnemyAlive = true;
         }
         
         /**************************************************************************************/
@@ -289,88 +308,71 @@ namespace EndlessQuest
         {
             player.GetHealthPoints -= spriteList[number].GetDamagePoints;
         }
-
-        public void BossHit()
-        {
-            player.GetHealthPoints -= boss.GetDamagePoints;
-        }
-
+       
         /**************************************************************************************/
 
         public override void Update(GameTime gameTime)
         {
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timer -= elapsed;            
-            
-            //Update player
-            player.Update(gameTime, Game.Window.ClientBounds);
+            timer -= elapsed;
 
-            //Update attacks
-            fire.Update(gameTime, Game.Window.ClientBounds);
 
-            //Update boss
-            boss.Update(gameTime, Game.Window.ClientBounds);          
-
-            if(player.GetExperience >= 100)
+            if (isGameOver == false)
             {
-                player.LevelUp();
-                player.GetExperience = 0;
-                isLevelUp = true;
-            }               
+                //Update player
+                player.Update(gameTime, Game.Window.ClientBounds);
 
-            //Update all common enemy sprites
-            foreach (EnemySprite s in spriteList)
-            {
-                //s.GetSpeed = currentSpeed;
-                s.Update(gameTime, Game.Window.ClientBounds);
+                //Update attacks
+                fire.Update(gameTime, Game.Window.ClientBounds);
 
-                //currentSpeed = s.GetSpeed;                
-
-                //Check for collisions and exit game if there is one
-                if (s.CollisionRect.Intersects(player.CollisionRect) && s.GetHealthPoints >= 0)
+                if (player.GetExperience >= 100)
                 {
-                    collisionHappened = true;
-                    currentCollisionPosition = s.GetPosition;
-                    index = spriteList.IndexOf(s); // gets the index of the enemy                    
+                    player.LevelUp();
+                    player.GetExperience = 0;
+                    isLevelUp = true;
+                }
 
-                    // Makes enemies stop in front of player
-                    s.GetSpeed = new Vector2(0, 0);
+                //Update all common enemy sprites
+                foreach (EnemySprite s in spriteList)
+                {
+                    s.Update(gameTime, Game.Window.ClientBounds);
 
-                    // As well as the boss
-                    boss.GetSpeed = new Vector2(0, 0);
-
-                    // Makes the rest of the enemis stop in their current positions
-                    foreach (EnemySprite t in spriteList)
+                    //Check for collisions and exit game if there is one
+                    if (s.CollisionRect.Intersects(player.CollisionRect) && s.GetHealthPoints >= 0)
                     {
-                        t.GetSpeed = new Vector2(0, 0);
+                        collisionHappened = true;
+                        currentCollisionPosition = s.GetPosition;
+                        index = spriteList.IndexOf(s); // gets the index of the enemy                    
+
+                        // Makes enemies stop in front of player
+                        s.GetSpeed = new Vector2(0, 0);
+
+                        // Makes the rest of the enemis stop in their current positions
+                        foreach (EnemySprite t in spriteList)
+                        {
+                            t.GetSpeed = new Vector2(0, 0);
+                        }
+
+                        if (player.GetHealthPoints <= 0)
+                        {
+                            //Exits game in case player's life reaches zero                        
+                            isGameOver = true;
+                            //Game.Exit();
+                        }
+                        else
+                            isGameOver = false;
+
+                        // Play collision sound
+                        //if (s.collisionCueName != null)
+                        //((Game1)Game).PlayCollisionSound(s.collisionCueName);
+
                     }
-
-                    if (player.GetHealthPoints <= 0)
-                        //Exits game in case player's life reaches zero                        
-                        isGameOver = true;
-
-                    // Play collision sound
-                    //if (s.collisionCueName != null)
-                    //((Game1)Game).PlayCollisionSound(s.collisionCueName);
-
+                    else
+                    {
+                        s.GetSpeed = currentSpeed;
+                    }
                 }
-                else
-                {
-                    s.GetSpeed = currentSpeed;
-                    boss.GetSpeed = currentSpeed;
-                }                    
-
-                    //Check collision with boss
-                if (boss.CollisionRect.Intersects(player.CollisionRect))
-                {
-                    collisionHappened = true;
-                    boss.GetSpeed = new Vector2(0, 0);
-                }
-                /*else
-                    boss.GetSpeed = currentSpeed;*/
             }
-
-            time = time + 1;
 
             base.Update(gameTime);
         }
@@ -416,7 +418,7 @@ namespace EndlessQuest
             }
             /**************************************************************************************/
 
-            if(isLevelUp == true)
+            if(isLevelUp == true)                
             {
                 spriteBatch.DrawString(Font, "You reached level  " + player.GetLevel, new Vector2(200, 300), Color.Black);  
                 isLevelUp = false;
@@ -424,10 +426,10 @@ namespace EndlessQuest
 
             /**************************************************************************************/
 
+            if (isGameOver == false)
+            {
                 //Draw the player
                 player.Draw(gameTime, spriteBatch);
-
-                boss.Draw(gameTime, spriteBatch);
 
                 //Draw all sprites
                 foreach (Sprite s in spriteList)
@@ -448,14 +450,17 @@ namespace EndlessQuest
                     Font,
                     "EXP: " + player.GetExperience.ToString(),
                     expPointsPos,
-                    Color.Black);                
+                    Color.Black);
                 spriteBatch.DrawString(
                        Font,
                        "LEVEL: " + player.GetLevel.ToString(),
                        levelPos,
                        Color.Black);
+            }          
+            
                 spriteBatch.End();   
                 base.Draw(gameTime);
+
            // }
         }
     }

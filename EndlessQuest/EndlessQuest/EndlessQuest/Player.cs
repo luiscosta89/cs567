@@ -15,8 +15,6 @@ namespace EndlessQuest
 {
     public class Player : Sprite
     {
-        GraphicsDeviceManager graphics;
-        
         //private string name;
         private int healthPoints = 100;
         private int magicPoints = 50;
@@ -69,15 +67,15 @@ namespace EndlessQuest
 
         /**************************************************************************************/
 
-        bool hasJumped = false;
-        bool hasItem = true;
+        //bool hasJumped = false;
+        //bool hasItem = true;
 
         //Movement data
         //MouseState prevMouseState;
 
         //Jumping data
-        Vector2 currentPosition;
-        Vector2 nextPosition;
+        //Vector2 currentPosition;
+        //Vector2 nextPosition;
 
         public int GetHealthPoints
         {
@@ -110,17 +108,17 @@ namespace EndlessQuest
                 Vector2 inputDirection = Vector2.Zero;
                 
                 // The player runs automatically
-                inputDirection.X += 0.5f;
+                //inputDirection.X += 0.5f;
                 
                 //If player pressed arrow keys, move the sprite
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                /*if (Keyboard.GetState().IsKeyDown(Keys.Left))
                     inputDirection.X -= 0.5f;
                 if (Keyboard.GetState().IsKeyDown(Keys.Right))
                     inputDirection.X += 0.5f;
                 if (Keyboard.GetState().IsKeyDown(Keys.Up))
                     inputDirection.Y -= 0.5f;
                 if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                    inputDirection.Y += 0.5f;                
+                    inputDirection.Y += 0.5f;*/                
                 
                 //If player pressed the gamepad thumbstick, move the sprite
                 GamePadState gamepadState = GamePad.GetState(PlayerIndex.One);
@@ -150,7 +148,7 @@ namespace EndlessQuest
         {
             position += Direction;            
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            /*if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
                 hasJumped = true;
                 //Direction.Y += 5f;
@@ -164,7 +162,7 @@ namespace EndlessQuest
                 }
             }
 
-            hasJumped = false;  
+            hasJumped = false;  */
           
             //If player moved the mouse, move the sprite
             MouseState currMouseState = Mouse.GetState();

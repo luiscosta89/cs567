@@ -13,12 +13,7 @@ using Microsoft.Xna.Framework.Media;
 namespace EndlessQuest
 {
     public class Attacks : Sprite
-    {
-        GraphicsDeviceManager graphics;
-              
-
-        /**************************************************************************************/
-                
+    {                        
         //Get direction of sprite based on layer input and speed
         public override Vector2 Direction
         {
